@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPAIC - New Public Academy Inter College</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Orbitorn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#1a0a2e;--secondary:#16213e;--accent:#00d4ff;--accent2:#7b2cbf;--accent3:#ff6b35;--gold:#ffd700;--text:#fff;--text-muted:#a0a0a0;--card-bg:rgba(255,255,255,0.05)}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 50%,#0f0c29 100%);color:var(--text);overflow-x:hidden;line-height:1.6;min-height:100vh}
+        .navbar{position:fixed;top:0;left:0;width:100%;padding:12px 50px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(26,10,46,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,0.2)}
+        .logo-container{display:flex;align-items:center;gap:15px}
+        .logo{width:50px;height:50px;border-radius:50%;border:2px solid var(--accent);box-shadow:0 0 20px rgba(0,212,255,0.5);object-fit:cover;background:#fff8dc}
+        .school-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .school-name span{display:block;font-size:0.6rem;font-family:'Poppins',sans-serif;-webkit-text-fill-color:var(--text-muted)}
+        .nav-links{display:flex;gap:20px;list-style:none}
+        .nav-links a{color:var(--text);text-decoration:none;font-weight:500;font-size:0.8rem;padding:5px 0;transition:color 0.3s}
+        .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+        .nav-cta{display:flex;gap:10px}
+        .btn{padding:8px 16px;border-radius:50px;font-weight:600;text-decoration:none;transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;font-size:0.8rem}
+        .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}
+        .btn-whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:white}
+        .btn-secondary{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+        .mobile-menu-btn{display:none;background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer}
+        .page{display:none;min-height:100vh;padding-top:80px}
+        .page.active{display:block}
+        .hero-banner{width:100%;position:relative;overflow:hidden}
+        .hero-banner img{width:100%;height:auto;display:block;max-height:85vh;object-fit:cover;object-position:top}
+        .hero-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(26,10,46,0.95),transparent);padding:40px 50px 30px}
+        .hero-overlay h1{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:10px}
+        .hero-overlay h1 .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-overlay p{color:var(--text-muted);font-size:1rem;margin-bottom:20px}
+        .hero-buttons{display:flex;gap:15px;flex-wrap:wrap}
+        .stats-section{padding:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        .stat-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:20px;padding:25px 15px;text-align:center;transition:all 0.4s}
+        .stat-card:hover{transform:translateY(-8px);border-color:var(--accent)}
+        .stat-icon{width:50px;height:50px;margin:0 auto 12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:20px}
+        .stat-number{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .stat-label{color:var(--text-muted);font-size:0.8rem;margin-top:5px}
+        .section-header{text-align:center;margin-bottom:40px}
+        .section-header h2{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:12px}
+        .section-header h2 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .section-header p{color:var(--text-muted);font-size:0.95rem;max-width:600px;margin:0 auto}
+        .classes-section{padding:50px}
+        .classes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+        .class-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:18px;padding:22px;transition:all 0.4s}
+        .class-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.4)}
+        .class-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+        .class-card h3{font-size:1.1rem;margin-bottom:6px}
+        .class-card .grade{color:var(--accent);font-size:0.75rem;margin-bottom:10px}
+        .class-card .subjects{display:flex;flex-wrap:wrap;gap:5px}
+        .subject-tag{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);padding:3px 8px;border-radius:15px;font-size:0.65rem;color:var(--text-muted)}
+        .features-section{padding:50px}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+        .feature-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:15px;padding:18px;text-align:center;transition:all 0.4s}
+        .feature-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+        .feature-card .f-icon{font-size:1.8rem;margin-bottom:10px}
+        .feature-card h4{font-size:0.9rem;margin-bottom:5px}
+        .feature-card p{color:var(--text-muted);font-size:0.75rem}
+        .contact-section-home{padding:60px 50px}
+        .contact-grid-home{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+        .contact-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+        .contact-card-new{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:20px;text-align:center;transition:all 0.4s;text-decoration:none;color:inherit;display:block}
+        .contact-card-new:hover{transform:translateY(-6px);border-color:var(--accent)}
+        .contact-card-new .icon-wrap{width:60px;height:60px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .contact-card-new.call .icon-wrap{background:linear-gradient(135deg,#ff6b35,#ff8c42)}
+        .contact-card-new.whatsapp .icon-wrap{background:linear-gradient(135deg,#25d366,#128c7e)}
+        .contact-card-new.location .icon-wrap{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+        .contact-card-new.hours .icon-wrap{background:linear-gradient(135deg,#9b59b6,#8e44ad)}
+        .contact-card-new h4{font-size:1rem;margin-bottom:6px}
+        .contact-card-new p{color:var(--text-muted);font-size:0.8rem;margin:0}
+        .contact-card-new .highlight-text{color:var(--accent);font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:600;margin-top:6px}
+        .map-container{border-radius:18px;overflow:hidden;border:2px solid rgba(0,212,255,0.3);height:100%;min-height:300px}
+        .map-container iframe{width:100%;height:100%;min-height:300px;border:none}
+        .social-section{padding:40px;text-align:center}
+        .social-links{display:flex;justify-content:center;gap:18px;margin-top:18px}
+        .social-link{width:50px;height:50px;background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--text);text-decoration:none;transition:all 0.3s}
+        .social-link:hover{transform:translateY(-6px);border-color:var(--accent)}
+        .anniversary-banner{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(123,44,191,0.1));border-top:1px solid rgba(0,212,255,0.2);padding:35px;text-align:center}
+        .anniversary-number{font-family:'Orbitron',sans-serif;font-size:4rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .anniversary-text{font-size:1.5rem;font-family:'Playfair Display',serif}
+        .anniversary-text .highlight{color:var(--accent)}
+        .anniversary-tagline{color:var(--text-muted);font-size:0.9rem;margin-top:8px}
+        .anniversary-tagline span{color:var(--gold)}
+        .founders-section{padding:50px}
+        .founder-hero{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center;margin-bottom:40px}
+        .founder-image-frame{width:100%;max-width:350px;aspect-ratio:1;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:25px;padding:4px}
+        .founder-image-inner{width:100%;height:100%;background:var(--primary);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent)}
+        .founder-content h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:15px}
+        .founder-content .tagline{color:var(--accent);font-size:0.95rem;font-style:italic;margin-bottom:15px;padding-left:15px;border-left:3px solid var(--accent)}
+        .founder-content p{color:var(--text-muted);font-size:0.9rem;margin-bottom:10px}
+        .vision-box{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:18px;margin-top:18px}
+        .vision-box h3{color:var(--accent);margin-bottom:8px;font-size:1rem}
+        .vision-box p{font-style:italic;font-size:0.9rem}
+        .offerings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:30px}
+        .offering-item{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px;transition:all 0.3s;font-size:0.85rem}
+        .offering-item:hover{border-color:var(--accent);transform:translateX(5px)}
+        .management-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;padding:50px}
+        .member-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:18px;padding:25px;text-align:center;transition:all 0.4s}
+        .member-card:hover{transform:translateY(-8px);border-color:var(--accent)}
+        .member-avatar{width:80px;height:80px;margin:0 auto 15px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem}
+        .member-card h3{font-size:1.1rem;margin-bottom:4px}
+        .member-card .role{color:var(--accent);font-size:0.8rem;margin-bottom:8px}
+        .member-card p{color:var(--text-muted);font-size:0.75rem}
+        .facilities-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding:50px}
+        .facility-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:18px;overflow:hidden;transition:all 0.4s}
+        .facility-card:hover{transform:scale(1.02);border-color:var(--accent)}
+        .facility-image{height:140px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+        .facility-content{padding:18px}
+        .facility-content h3{font-size:1.1rem;margin-bottom:6px}
+        .facility-content p{color:var(--text-muted);font-size:0.8rem}
+        .toppers-section{padding:50px}
+        .toppers-year{margin-bottom:35px}
+        .year-header{display:flex;align-items:center;gap:15px;margin-bottom:18px}
+        .year-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));padding:8px 18px;border-radius:50px;font-family:'Orbitron',sans-serif;font-size:0.9rem}
+        .year-line{flex:1;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+        .toppers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+        .topper-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:15px;padding:18px;text-align:center;transition:all 0.4s;position:relative}
+        .topper-card.rank-1{border-color:var(--gold)}
+        .topper-card.rank-1 .rank-badge{background:linear-gradient(135deg,var(--gold),#ffaa00)}
+        .topper-card.rank-2 .rank-badge{background:linear-gradient(135deg,#c0c0c0,#a0a0a0)}
+        .topper-card.rank-3 .rank-badge{background:linear-gradient(135deg,#cd7f32,#b87333)}
+        .topper-card:hover{transform:translateY(-6px)}
+        .rank-badge{position:absolute;top:-8px;right:12px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem}
+        .topper-avatar{width:65px;height:65px;margin:0 auto 10px;background:linear-gradient(135deg,var(--secondary),var(--primary));border:2px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+        .topper-card h4{font-size:0.95rem;margin-bottom:4px}
+        .topper-card .class-info{color:var(--accent);font-size:0.75rem;margin-bottom:6px}
+        .topper-card .percentage{font-family:'Orbitron',sans-serif;font-size:1.2rem;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .gallery-section{padding:50px}
+        .gallery-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:30px}
+        .gallery-tab{padding:8px 20px;background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:50px;cursor:pointer;font-size:0.85rem;color:var(--text);transition:all 0.3s}
+        .gallery-tab:hover,.gallery-tab.active{background:var(--accent);color:var(--primary)}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+        .gallery-item{aspect-ratio:16/9;background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:15px;overflow:hidden;position:relative;cursor:pointer;transition:all 0.4s}
+        .gallery-item:hover{transform:scale(1.03);border-color:var(--accent)}
+        .gallery-item img{width:100%;height:100%;object-fit:cover}
+        .gallery-item.video::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+        .gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--secondary),var(--primary));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted)}
+        .gallery-placeholder .gp-icon{font-size:2rem;margin-bottom:8px;color:var(--accent)}
+        .contact-section{padding:50px}
+        .contact-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+        .contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:25px}
+        .contact-form-container{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:22px;padding:30px}
+        .contact-form-container h3{font-size:1.3rem;margin-bottom:20px;text-align:center}
+        .form-group{margin-bottom:15px}
+        .form-group label{display:block;margin-bottom:5px;color:var(--text-muted);font-size:0.8rem}
+        .form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 15px;background:rgba(255,255,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:10px;color:var(--text);font-size:0.9rem;font-family:inherit}
+        .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent)}
+        .form-group textarea{min-height:80px;resize:vertical}
+        .form-group select option{background:var(--primary)}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:white;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all 0.3s}
+        .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,212,255,0.4)}
+        .form-success{display:none;text-align:center;padding:35px}
+        .form-success.active{display:block}
+        .form-success .success-icon{font-size:3rem;color:#4ade80;margin-bottom:15px}
+        .contact-form.hidden{display:none}
+        .footer{background:rgba(0,0,0,0.4);padding:40px 50px 20px;border-top:1px solid rgba(0,212,255,0.1)}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:25px}
+        .footer-brand h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .footer-brand p{color:var(--text-muted);font-size:0.8rem}
+        .footer-links h4{font-size:0.9rem;margin-bottom:12px;color:var(--accent)}
+        .footer-links ul{list-style:none}
+        .footer-links li{margin-bottom:6px}
+        .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.8rem}
+        .footer-links a:hover{color:var(--accent)}
+        .footer-bottom{text-align:center;padding-top:18px;border-top:1px solid rgba(0,212,255,0.1);color:var(--text-muted);font-size:0.75rem}
+        .whatsapp-float{position:fixed;bottom:20px;right:20px;width:55px;height:55px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:whatsappPulse 2s infinite;text-decoration:none}
+        .whatsapp-float svg{width:30px;height:30px;fill:white}
+        @keyframes whatsappPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.6),0 0 0 8px rgba(37,211,102,0.1)}}
+        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:2000}
+        .modal-overlay.active{display:flex}
+        .modal-content{max-width:90%;max-height:90%;position:relative}
+        .modal-close{position:absolute;top:-35px;right:0;background:none;border:none;color:white;font-size:1.8rem;cursor:pointer}
+        .modal-content iframe{width:80vw;height:45vw;max-height:80vh;border-radius:12px;border:none}
+        .modal-content img{max-width:90vw;max-height:85vh;border-radius:12px}
+        .loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--primary);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s,visibility 0.5s}
+        .loader.hidden{opacity:0;visibility:hidden}
+        .loader-content{text-align:center}
+        .loader-logo{width:75px;height:75px;border-radius:50%;margin-bottom:15px;animation:loaderPulse 1.5s infinite;border:3px solid var(--accent)}
+        @keyframes loaderPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+        .loader-text{font-family:'Orbitron',sans-serif;font-size:0.9rem;color:var(--accent);letter-spacing:2px}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.7s}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,10,46,0.98);z-index:1001;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+        .mobile-nav.active{display:flex}
+        .mobile-nav-close{position:absolute;top:18px;right:25px;background:none;border:none;color:var(--accent);font-size:1.8rem;cursor:pointer}
+        .mobile-nav a{color:var(--text);text-decoration:none;font-size:1.1rem}
+        @media(max-width:992px){.navbar{padding:10px 20px}.nav-links,.nav-cta{display:none}.mobile-menu-btn{display:block}.hero-overlay{padding:25px 20px 20px}.hero-overlay h1{font-size:1.8rem}.founder-hero{grid-template-columns:1fr}.contact-grid-home,.contact-page-grid{grid-template-columns:1fr}.stats-section{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.stats-section{grid-template-columns:1fr;padding:30px 20px}.classes-section,.features-section,.founders-section,.toppers-section,.gallery-section,.contact-section,.contact-section-home{padding:30px 20px}.form-row,.contact-cards-grid,.contact-info-cards{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;text-align:center}.footer{padding:30px 20px 15px}.anniversary-number{font-size:3rem}.management-grid,.facilities-grid{padding:30px 20px}.hero-overlay h1{font-size:1.5rem}.hero-overlay p{font-size:0.85rem}}
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"><div class="loader-content"><img src="logo.jpg" alt="NPAIC" class="loader-logo" onerror="this.style.background='#fff8dc'"><div class="loader-text">Loading...</div></div></div>
+    
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="NPAIC" class="logo" onerror="this.style.background='#fff8dc'">
+            <div class="school-name">NPAIC<span>New Public Academy Inter College</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a></li>
+            <li><a href="#" onclick="showPage('founders')" data-page="founders">Founders</a></li>
+            <li><a href="#" onclick="showPage('management')" data-page="management">Management</a></li>
+            <li><a href="#" onclick="showPage('facilities')" data-page="facilities">Facilities</a></li>
+            <li><a href="#" onclick="showPage('toppers')" data-page="toppers">Toppers</a></li>
+            <li><a href="#" onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
+            <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="tel:8604012282" class="btn btn-secondary">📞 Call</a>
+            <a href="https://wa.me/918604012282" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()">✕</button>
+        <a href="#" onclick="showPage('home');toggleMobileMenu()">Home</a>
+        <a href="#" onclick="showPage('founders');toggleMobileMenu()">Founders</a>
+        <a href="#" onclick="showPage('management');toggleMobileMenu()">Management</a>
+        <a href="#" onclick="showPage('facilities');toggleMobileMenu()">Facilities</a>
+        <a href="#" onclick="showPage('toppers');toggleMobileMenu()">Toppers</a>
+        <a href="#" onclick="showPage('gallery');toggleMobileMenu()">Gallery</a>
+        <a href="#" onclick="showPage('contact');toggleMobileMenu()">Contact</a>
+        <a href="tel:8604012282">📞 8604012282</a>
+        <a href="https://wa.me/918604012282" target="_blank">💬 WhatsApp</a>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+        <section class="hero-banner">
+            <img src="hero-image.jpg" alt="New Public Academy Inter College - Admission Open">
+            <div class="hero-overlay">
+                <h1>Shaping <span class="highlight">Future Leaders</span></h1>
+                <p>CBSE Pattern | Playgroup to Class 12th | Since 2001</p>
+                <div class="hero-buttons">
+                    <a href="#" onclick="showPage('contact')" class="btn btn-primary">🎓 Apply Now</a>
+                    <a href="tel:8604012282" class="btn btn-secondary">📞 Call Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stat-card reveal"><div class="stat-icon">📅</div><div class="stat-number" data-target="24">0</div><div class="stat-label">Years of Excellence</div></div>
+            <div class="stat-card reveal"><div class="stat-icon">🎓</div><div class="stat-number" data-target="20000" data-suffix="+">0</div><div class="stat-label">Students Educated</div></div>
+            <div class="stat-card reveal"><div class="stat-icon">👨‍🏫</div><div class="stat-number" data-target="50" data-suffix="+">0</div><div class="stat-label">Expert Faculty</div></div>
+            <div class="stat-card reveal"><div class="stat-icon">🏆</div><div class="stat-number" data-target="100" data-suffix="%">0</div><div class="stat-label">Result Rate</div></div>
+        </section>
+
+        <section class="classes-section">
+            <div class="section-header reveal"><h2>Our <span class="gradient">Academic Programs</span></h2><p>Comprehensive education from playgroup to senior secondary</p></div>
+            <div class="classes-grid">
+                <div class="class-card reveal"><div class="class-icon">🎒</div><h3>Pre-Primary</h3><div class="grade">Playgroup • Nursery • KG</div><div class="subjects"><span class="subject-tag">Play-based Learning</span><span class="subject-tag">Motor Skills</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📖</div><h3>Primary</h3><div class="grade">Class I to V</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Maths</span><span class="subject-tag">Computer</span><span class="subject-tag">Hindi</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">🔬</div><h3>Middle School</h3><div class="grade">Class VI to VIII</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Maths</span><span class="subject-tag">Science</span><span class="subject-tag">Social Studies</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📐</div><h3>Secondary</h3><div class="grade">Class IX & X</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Science</span><span class="subject-tag">Maths</span><span class="subject-tag">Hindi</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">🎓</div><h3>Sr. Secondary - Science</h3><div class="grade">Class XI & XII</div><div class="subjects"><span class="subject-tag">Physics</span><span class="subject-tag">Chemistry</span><span class="subject-tag">Maths</span><span class="subject-tag">Biology</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📊</div><h3>Sr. Secondary - Commerce</h3><div class="grade">Class XI & XII</div><div class="subjects"><span class="subject-tag">Accountancy</span><span class="subject-tag">Business</span><span class="subject-tag">Economics</span></div></div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="section-header reveal"><h2>Why Choose <span class="gradient">NPAIC?</span></h2><p>Experience education beyond textbooks</p></div>
+            <div class="features-grid">
+                <div class="feature-card reveal"><div class="f-icon">📺</div><h4>Smart Classes</h4><p>Interactive digital learning</p></div>
+                <div class="feature-card reveal"><div class="f-icon">🏅</div><h4>Olympiad Training</h4><p>National & international prep</p></div>
+                <div class="feature-card reveal"><div class="f-icon">💬</div><h4>Personality Development</h4><p>Building confident leaders</p></div>
+                <div class="feature-card reveal"><div class="f-icon">🏃</div><h4>Sports & Yoga</h4><p>Physical fitness programs</p></div>
+                <div class="feature-card reveal"><div class="f-icon">👥</div><h4>Debate Competitions</h4><p>Critical thinking skills</p></div>
+                <div class="feature-card reveal"><div class="f-icon">🎵</div><h4>Dance & Music</h4><p>Nurturing artistic talents</p></div>
+                <div class="feature-card reveal"><div class="f-icon">📚</div><h4>Competitive Exams</h4><p>JEE, NEET preparation</p></div>
+                <div class="feature-card reveal"><div class="f-icon">🗣️</div><h4>Spoken English</h4><p>Fluency programs</p></div>
+            </div>
+        </section>
+
+        <section class="contact-section-home">
+            <div class="section-header reveal"><h2>Get In <span class="gradient">Touch</span></h2><p>We're here to help with admissions and inquiries</p></div>
+            <div class="contact-grid-home">
+                <div class="contact-cards-grid reveal">
+                    <a href="tel:8604012282" class="contact-card-new call">
+                        <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
+                        <h4>Call Us</h4>
+                        <p>Speak directly with our team</p>
+                        <div class="highlight-text">8604012282</div>
+                    </a>
+                    <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp">
+                        <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
+                        <h4>WhatsApp Us</h4>
+                        <p>Quick response guaranteed</p>
+                        <div class="highlight-text">+91 8604012282</div>
+                    </a>
+                    <a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank" class="contact-card-new location">
+                        <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                        <h4>Visit Us</h4>
+                        <p>Opposite Water Tank</p>
+                        <div class="highlight-text" style="font-size:0.8rem">Kalyanpur East, Lucknow</div>
+                    </a>
+                    <div class="contact-card-new hours">
+                        <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
+                        <h4>Office Hours</h4>
+                        <p>Monday - Saturday</p>
+                        <div class="highlight-text">8:00 AM - 4:00 PM</div>
+                    </div>
+                </div>
+                <div class="map-container reveal">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8!2d80.9744016!3d26.9036577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-section reveal">
+            <div class="section-header"><h2>Connect With <span class="gradient">Us</span></h2><p>Follow our journey</p></div>
+            <div class="social-links">
+                <a href="YOUR_FACEBOOK_URL" class="social-link" target="_blank">📘</a>
+                <a href="YOUR_INSTAGRAM_URL" class="social-link" target="_blank">📷</a>
+                <a href="YOUR_YOUTUBE_URL" class="social-link" target="_blank">▶️</a>
+            </div>
+        </section>
+
+        <section class="anniversary-banner reveal">
+            <div class="anniversary-number">24</div>
+            <div class="anniversary-text">Years of <span class="highlight">Educational Excellence</span></div>
+            <div class="anniversary-tagline">✨ Nurturing Minds Since 2001 • <span>सत्यमेव जयते</span> ✨</div>
+        </section>
+    </div>
+
+    <!-- FOUNDERS PAGE -->
+    <div class="page" id="page-founders">
+        <section class="founders-section">
+            <div class="section-header reveal"><h2>Our <span class="gradient">Visionary Founders</span></h2><p>Building a legacy since 2001</p></div>
+            <div class="founder-hero">
+                <div class="founder-image reveal"><div class="founder-image-frame"><div class="founder-image-inner">👥</div></div></div>
+                <div class="founder-content reveal">
+                    <h2>Late Mr. Prabha Shankar Upadhyay & Mrs. Manju Upadhyay</h2>
+                    <div class="tagline">"सत्यमेव जयते" - Truth Alone Triumphs</div>
+                    <p>New Public Academy Inter College, Kalyanpur campus was founded in 2001, serving proudly for 24 years.</p>
+                    <p>The lush green, pollution-free, sophisticated smart school is well placed with connected transports.</p>
+                    <div class="vision-box"><h3>👁️ Our Vision</h3><p>"Education is not preparation for life but learning how to responsibly go about it."</p></div>
+                </div>
+            </div>
+            <div class="section-header reveal"><h2>Our <span class="gradient">Unique Offerings</span></h2></div>
+            <div class="offerings-grid reveal">
+                <div class="offering-item">📺 Smart Classes</div>
+                <div class="offering-item">📚 Library</div>
+                <div class="offering-item">🏅 Competitive Exams</div>
+                <div class="offering-item">🔬 Practical Knowledge</div>
+                <div class="offering-item">💻 Computer Lab</div>
+                <div class="offering-item">🧪 Science Labs</div>
+                <div class="offering-item">🎵 Dance & Music</div>
+                <div class="offering-item">⚽ Playground</div>
+                <div class="offering-item">📹 CCTV Coverage</div>
+                <div class="offering-item">⚡ Power Backup</div>
+                <div class="offering-item">🛡️ 24/7 Security</div>
+                <div class="offering-item">🤝 Accessible Management</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MANAGEMENT PAGE -->
+    <div class="page" id="page-management">
+        <section style="padding-top:40px;">
+            <div class="section-header reveal"><h2>Management <span class="gradient">Committee</span></h2><p>Dedicated leaders guiding our institution</p></div>
+            <div class="management-grid">
+                <div class="member-card reveal"><div class="member-avatar">👔</div><h3>Chairperson</h3><div class="role">Chief Administrator</div><p>Overseeing strategic direction</p></div>
+                <div class="member-card reveal"><div class="member-avatar">🎓</div><h3>Principal</h3><div class="role">Academic Head</div><p>Leading academic excellence</p></div>
+                <div class="member-card reveal"><div class="member-avatar">⚙️</div><h3>Administrator</h3><div class="role">Operations Head</div><p>Managing daily operations</p></div>
+                <div class="member-card reveal"><div class="member-avatar">👨‍🏫</div><h3>Academic Coordinator</h3><div class="role">Curriculum Head</div><p>Designing programs</p></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FACILITIES PAGE -->
+    <div class="page" id="page-facilities">
+        <section style="padding-top:40px;">
+            <div class="section-header reveal"><h2>World-Class <span class="gradient">Facilities</span></h2><p>State-of-the-art infrastructure</p></div>
+            <div class="facilities-grid">
+                <div class="facility-card reveal"><div class="facility-image">📺</div><div class="facility-content"><h3>Smart Classrooms</h3><p>Interactive digital boards and multimedia learning</p></div></div>
+                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#7b2cbf,#9d4edd)">🧪</div><div class="facility-content"><h3>Science Laboratories</h3><p>Physics, Chemistry and Biology labs</p></div></div>
+                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#ff6b35,#ff8c42)">💻</div><div class="facility-content"><h3>Computer Lab</h3><p>Modern systems with high-speed internet</p></div></div>
+                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#059669,#10b981)">📚</div><div class="facility-content"><h3>Library</h3><p>Thousands of books and resources</p></div></div>
+                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)">⚽</div><div class="facility-content"><h3>Sports Ground</h3><p>Cricket, football, athletics facilities</p></div></div>
+                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">🛡️</div><div class="facility-content"><h3>Security & CCTV</h3><p>24/7 surveillance for safety</p></div></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TOPPERS PAGE -->
+    <div class="page" id="page-toppers">
+        <section class="toppers-section">
+            <div class="section-header reveal"><h2>Our <span class="gradient">Achievers</span></h2><p>Celebrating excellence</p></div>
+            <div class="toppers-year reveal">
+                <div class="year-header"><div class="year-badge">2024 - Class XII</div><div class="year-line"></div></div>
+                <div class="toppers-grid">
+                    <div class="topper-card rank-1"><div class="rank-badge">1</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Science</div><div class="percentage">98.2%</div></div>
+                    <div class="topper-card rank-2"><div class="rank-badge">2</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Science</div><div class="percentage">96.8%</div></div>
+                    <div class="topper-card rank-3"><div class="rank-badge">3</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Commerce</div><div class="percentage">95.4%</div></div>
+                </div>
+            </div>
+            <div class="toppers-year reveal">
+                <div class="year-header"><div class="year-badge">2024 - Class X</div><div class="year-line"></div></div>
+                <div class="toppers-grid">
+                    <div class="topper-card rank-1"><div class="rank-badge">1</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">97.6%</div></div>
+                    <div class="topper-card rank-2"><div class="rank-badge">2</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">96.2%</div></div>
+                    <div class="topper-card rank-3"><div class="rank-badge">3</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">95.0%</div></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div class="page" id="page-gallery">
+        <section class="gallery-section">
+            <div class="section-header reveal"><h2>Our <span class="gradient">Gallery</span></h2><p>Glimpses of life at NPAIC</p></div>
+            <div class="gallery-tabs reveal">
+                <button class="gallery-tab active" onclick="filterGallery('all')">All</button>
+                <button class="gallery-tab" onclick="filterGallery('video')">Videos</button>
+                <button class="gallery-tab" onclick="filterGallery('image')">Images</button>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_1')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>School Tour</span></div></div>
+                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_2')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>Annual Day</span></div></div>
+                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_3')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>Sports Day</span></div></div>
+                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_1')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Campus View</span></div></div>
+                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_2')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Smart Classroom</span></div></div>
+                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_3')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Science Lab</span></div></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div class="page" id="page-contact">
+        <section class="contact-section">
+            <div class="section-header reveal"><h2>Get In <span class="gradient">Touch</span></h2><p>We'd love to hear from you</p></div>
+            <div class="contact-page-grid">
+                <div>
+                    <div class="contact-info-cards reveal">
+                        <a href="tel:8604012282" class="contact-card-new call">
+                            <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
+                            <h4>Call Us</h4>
+                            <p>Speak directly</p>
+                            <div class="highlight-text">8604012282</div>
+                        </a>
+                        <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp">
+                            <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
+                            <h4>WhatsApp</h4>
+                            <p>Quick response</p>
+                            <div class="highlight-text">+91 8604012282</div>
+                        </a>
+                        <a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank" class="contact-card-new location">
+                            <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                            <h4>Visit Us</h4>
+                            <p>Opposite Water Tank</p>
+                            <div class="highlight-text" style="font-size:0.75rem">Kalyanpur, Lucknow</div>
+                        </a>
+                        <div class="contact-card-new hours">
+                            <div class="icon-wrap"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
+                            <h4>Hours</h4>
+                            <p>Mon - Sat</p>
+                            <div class="highlight-text">8 AM - 4 PM</div>
+                        </div>
+                    </div>
+                    <div class="map-container reveal" style="margin-top:15px;min-height:220px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8!2d80.9744016!3d26.9036577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="contact-form-container reveal">
+                    <h3>✉️ Send Us a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group"><label>Parent Name *</label><input type="text" name="parentName" required placeholder="Your name"></div>
+                            <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="Phone number"></div>
+                        </div>
+                        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="Email address"></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Student Name *</label><input type="text" name="studentName" required placeholder="Student name"></div>
+                            <div class="form-group"><label>Class *</label>
+                                <select name="classApplying" required>
+                                    <option value="">Select Class</option>
+                                    <option>Playgroup</option><option>Nursery</option><option>KG</option>
+                                    <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option>
+                                    <option>Class VI</option><option>Class VII</option><option>Class VIII</option>
+                                    <option>Class IX</option><option>Class X</option>
+                                    <option>Class XI - Science</option><option>Class XI - Commerce</option>
+                                    <option>Class XII - Science</option><option>Class XII - Commerce</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Message</label><textarea name="message" placeholder="Your message..."></textarea></div>
+                        <button type="submit" class="submit-btn" id="submitBtn">📤 Submit Inquiry</button>
+                    </form>
+                    <div class="form-success" id="formSuccess"><div class="success-icon">✅</div><h3>Thank You!</h3><p>We'll contact you shortly.</p></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>NPAIC</h3>
+                <p>New Public Academy Inter College - Shaping future leaders since 2001 in Kalyanpur, Lucknow.</p>
+            </div>
+            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('founders')">Founders</a></li><li><a href="#" onclick="showPage('facilities')">Facilities</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+            <div class="footer-links"><h4>Programs</h4><ul><li><a href="#">Pre-Primary</a></li><li><a href="#">Primary</a></li><li><a href="#">Secondary</a></li><li><a href="#">Senior Secondary</a></li></ul></div>
+            <div class="footer-links"><h4>Contact</h4><ul><li><a href="tel:8604012282">📞 8604012282</a></li><li><a href="https://wa.me/918604012282">💬 WhatsApp</a></li><li><a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank">📍 Kalyanpur, Lucknow</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 New Public Academy Inter College. All Rights Reserved. | सत्यमेव जयते</p></div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/918604012282" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="videoModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><iframe id="videoFrame" src="" allowfullscreen></iframe></div></div>
+    <div class="modal-overlay" id="imageModal"><div class="modal-content"><button class="modal-close" onclick="closeImageModal()">✕</button><img id="modalImage" src="" alt="Gallery"></div></div>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),800));
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.dataset.page===id));scrollTo(0,0);setTimeout(reveal,100)}
+function toggleMobileMenu(){document.getElementById('mobileNav').classList.toggle('active')}
+function filterGallery(type){document.querySelectorAll('.gallery-tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');document.querySelectorAll('.gallery-item').forEach(i=>i.style.display=(type==='all'||i.dataset.type===type)?'block':'none')}
+function openVideoModal(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1';document.getElementById('videoModal').classList.add('active')}
+function closeModal(){document.getElementById('videoFrame').src='';document.getElementById('videoModal').classList.remove('active')}
+function openImageModal(id){document.getElementById('modalImage').src='https://drive.google.com/uc?export=view&id='+id;document.getElementById('imageModal').classList.add('active')}
+function closeImageModal(){document.getElementById('imageModal').classList.remove('active')}
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const btn=document.getElementById('submitBtn');btn.innerHTML='⏳ Submitting...';btn.disabled=true;const data=Object.fromEntries(new FormData(this));data.timestamp=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',{method:'POST',mode:'no-cors',body:JSON.stringify(data)}).finally(()=>{document.querySelector('.contact-form').classList.add('hidden');document.getElementById('formSuccess').classList.add('active')})});
+function reveal(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-60)el.classList.add('active')})}
+function animateCounters(){document.querySelectorAll('.stat-number').forEach(c=>{const t=parseInt(c.dataset.target),s=c.dataset.suffix||'+';let n=0;const i=setInterval(()=>{n+=t/40;if(n>=t){c.textContent=t.toLocaleString()+s;clearInterval(i)}else c.textContent=Math.floor(n).toLocaleString()},25)})}
+addEventListener('scroll',reveal);addEventListener('load',()=>{reveal();setTimeout(animateCounters,1200)});
+</script>
+</body>
+</html>
