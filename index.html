@@ -47,6 +47,21 @@
         .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
         
         .stats-section{padding:40px 50px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+        
+        /* Image Carousel */
+        .carousel-section{padding:20px 50px 40px;overflow:hidden}
+        .carousel-container{position:relative;max-width:1000px;margin:0 auto;border-radius:15px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+        .carousel-track{display:flex;transition:transform 0.5s ease}
+        .carousel-slide{min-width:100%;position:relative}
+        .carousel-slide img{width:100%;height:400px;object-fit:cover;display:block}
+        .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;padding:15px 18px;cursor:pointer;font-size:1.2rem;border-radius:5px;transition:all 0.3s;z-index:10}
+        .carousel-btn:hover{background:var(--accent)}
+        .carousel-btn.prev{left:15px}
+        .carousel-btn.next{right:15px}
+        .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:15px}
+        .carousel-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s;border:none}
+        .carousel-dot.active{background:var(--accent);transform:scale(1.2)}
+        @media(max-width:768px){.carousel-section{padding:15px}.carousel-slide img{height:250px}.carousel-btn{padding:10px 12px;font-size:1rem}}
         .stat-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:22px 12px;text-align:center;transition:all 0.4s}
         .stat-card:hover{transform:translateY(-6px);border-color:var(--accent)}
         .stat-icon{width:45px;height:45px;margin:0 auto 10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px}
@@ -270,6 +285,18 @@
             </div>
         </section>
 
+        <!-- Image Carousel -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Images loaded from CONFIG automatically -->
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </section>
+
         <section class="stats-section">
             <div class="stat-card reveal"><div class="stat-icon">📅</div><div class="stat-number" data-target="24">0</div><div class="stat-label">Years of Excellence</div></div>
             <div class="stat-card reveal"><div class="stat-icon">🎓</div><div class="stat-number" data-target="20000" data-suffix="+">0</div><div class="stat-label">Students Educated</div></div>
@@ -447,12 +474,7 @@
                 <button class="gallery-tab" onclick="filterGallery('image')">Images</button>
             </div>
             <div class="gallery-grid" id="galleryGrid">
-                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_1')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>School Tour</span></div></div>
-                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_2')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>Annual Day</span></div></div>
-                <div class="gallery-item video reveal" data-type="video" onclick="openVideoModal('YOUTUBE_VIDEO_ID_3')"><div class="gallery-placeholder"><div class="gp-icon">▶️</div><span>Sports Day</span></div></div>
-                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_1')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Campus View</span></div></div>
-                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_2')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Smart Classroom</span></div></div>
-                <div class="gallery-item reveal" data-type="image" onclick="openImageModal('GOOGLE_DRIVE_FILE_ID_3')"><div class="gallery-placeholder"><div class="gp-icon">🖼️</div><span>Science Lab</span></div></div>
+                <!-- Gallery loaded from CONFIG automatically -->
             </div>
         </section>
     </div>
@@ -548,24 +570,106 @@
     <div class="modal-overlay" id="imageModal"><div class="modal-content"><button class="modal-close" onclick="closeImageModal()">✕</button><img id="modalImage" src="" alt="Gallery"></div></div>
 
 <script>
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),600));
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.dataset.page===id));scrollTo(0,0);setTimeout(reveal,100)}
+// ============================================
+// 🎓 NPAIC WEBSITE - GOOGLE SHEETS INTEGRATION
+// ============================================
+// Staff just updates Google Sheets - website updates automatically!
+//
+// SHEET 1: Images
+// Columns: A=DriveID, B=Caption, C=Type (carousel/gallery), D=Category
+//
+// SHEET 2: Videos  
+// Columns: A=YouTubeID, B=Title
+//
+// ============================================
+
+const SHEETS_CONFIG = {
+    // Replace these with your Google Sheet IDs
+    imagesSheetId: 'YOUR_IMAGES_SHEET_ID',
+    videosSheetId: 'YOUR_VIDEOS_SHEET_ID',
+    
+    // Sheet names (tabs)
+    imagesSheetName: 'Sheet1',
+    videosSheetName: 'Sheet1',
+};
+
+// Fetch data from published Google Sheet (CSV format)
+function fetchSheetData(sheetId, sheetName) {
+    var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:csv&sheet=' + sheetName;
+    return fetch(url).then(function(response){
+        return response.text();
+    }).then(function(text){
+        return parseCSV(text);
+    }).catch(function(error){
+        console.log('Sheet not configured yet:', error);
+        return [];
+    });
+}
+
+// Parse CSV to array of objects
+function parseCSV(csv) {
+    var lines = csv.trim().split('\n');
+    if (lines.length < 2) return [];
+    var headers = lines[0].split(',').map(function(h){ return h.replace(/"/g, '').trim().toLowerCase(); });
+    var result = [];
+    for(var i=1; i<lines.length; i++){
+        var line = lines[i];
+        var values = line.split(',');
+        var obj = {};
+        for(var j=0; j<headers.length; j++){
+            obj[headers[j]] = values[j] ? values[j].replace(/"/g, '').trim() : '';
+        }
+        if(obj[headers[0]]) result.push(obj);
+    }
+    return result;
+}
+
+// Google Drive image URL
+function getDriveImageUrl(fileId) {
+    return 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w1000';
+}
+
+// YouTube thumbnail URL
+function getYouTubeThumbnail(videoId) {
+    return 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+}
+
+// Load all content from sheets
+function loadFromSheets() {
+    // Load images
+    fetchSheetData(SHEETS_CONFIG.imagesSheetId, SHEETS_CONFIG.imagesSheetName).then(function(images){
+        var carouselImages = images.filter(function(img){ return img.type === 'carousel'; });
+        var galleryImages = images.filter(function(img){ return img.type === 'gallery'; });
+        
+        // Populate carousel
+        loadCarousel(carouselImages);
+        initCarousel();
+        
+        // Load videos then populate gallery
+        fetchSheetData(SHEETS_CONFIG.videosSheetId, SHEETS_CONFIG.videosSheetName).then(function(videos){
+            loadGallery(galleryImages, videos);
+            reveal();
+        });
+    });
+}
+window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},600)});
+function showPage(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.toggle('active',a.dataset.page===id)});scrollTo(0,0);setTimeout(reveal,100)}
 function toggleMobileMenu(){document.getElementById('mobileNav').classList.toggle('active')}
-function filterGallery(type){document.querySelectorAll('.gallery-tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');document.querySelectorAll('.gallery-item').forEach(i=>i.style.display=(type==='all'||i.dataset.type===type)?'block':'none')}
+function filterGallery(type){document.querySelectorAll('.gallery-tab').forEach(function(t){t.classList.remove('active')});event.target.classList.add('active');document.querySelectorAll('.gallery-item').forEach(function(i){i.style.display=(type==='all'||i.dataset.type===type)?'block':'none'})}
 function openVideoModal(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1';document.getElementById('videoModal').classList.add('active')}
 function closeModal(){document.getElementById('videoFrame').src='';document.getElementById('videoModal').classList.remove('active')}
-function openImageModal(id){document.getElementById('modalImage').src='https://drive.google.com/uc?export=view&id='+id;document.getElementById('imageModal').classList.add('active')}
+function openImageModal(id){document.getElementById('modalImage').src=getDriveImageUrl(id);document.getElementById('imageModal').classList.add('active')}
 function closeImageModal(){document.getElementById('imageModal').classList.remove('active')}
 
 // Form submission to Google Sheets
 document.getElementById('contactForm').addEventListener('submit',function(e){
     e.preventDefault();
-    const btn=document.getElementById('submitBtn');
+    var btn=document.getElementById('submitBtn');
     btn.innerHTML='⏳ Submitting...';
     btn.disabled=true;
     
-    const formData=new FormData(this);
-    const data={
+    var formData=new FormData(this);
+    var data={
         parentName:formData.get('parentName'),
         phone:formData.get('phone'),
         email:formData.get('email')||'',
@@ -575,28 +679,116 @@ document.getElementById('contactForm').addEventListener('submit',function(e){
         timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
     };
     
-    // Google Apps Script URL - REPLACE WITH YOUR DEPLOYED SCRIPT URL
-    const scriptURL='https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec';
+    var scriptURL='https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec';
     
     fetch(scriptURL,{
         method:'POST',
         mode:'no-cors',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(data)
-    }).then(()=>{
+    }).then(function(){
         document.querySelector('.contact-form').classList.add('hidden');
         document.getElementById('formSuccess').classList.add('active');
-    }).catch(err=>{
+    }).catch(function(err){
         console.error('Error:',err);
         document.querySelector('.contact-form').classList.add('hidden');
         document.getElementById('formSuccess').classList.add('active');
     });
 });
 
-function reveal(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-50)el.classList.add('active')})}
-function animateCounters(){document.querySelectorAll('.stat-number').forEach(c=>{const t=parseInt(c.dataset.target),s=c.dataset.suffix||'+';let n=0;const i=setInterval(()=>{n+=t/35;if(n>=t){c.textContent=t.toLocaleString()+s;clearInterval(i)}else c.textContent=Math.floor(n).toLocaleString()},20)})}
+function reveal(){document.querySelectorAll('.reveal').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight-50)el.classList.add('active')})}
+function animateCounters(){document.querySelectorAll('.stat-number').forEach(function(c){var t=parseInt(c.dataset.target),s=c.dataset.suffix||'+';var n=0;var i=setInterval(function(){n+=t/35;if(n>=t){c.textContent=t.toLocaleString()+s;clearInterval(i)}else c.textContent=Math.floor(n).toLocaleString()},20)})}
 addEventListener('scroll',reveal);
-addEventListener('load',()=>{reveal();setTimeout(animateCounters,1000)});
+addEventListener('load',function(){reveal();setTimeout(animateCounters,1000);loadFromSheets()});
+
+// Load carousel from sheet data
+function loadCarousel(images){
+    var track=document.getElementById('carouselTrack');
+    if(!images || images.length===0){
+        track.innerHTML='<div class="carousel-slide"><img src="hero-image.jpg" alt="NPAIC"></div>';
+        return;
+    }
+    for(var i=0;i<images.length;i++){
+        var img=images[i];
+        var slide=document.createElement('div');
+        slide.className='carousel-slide';
+        slide.innerHTML='<img src="'+getDriveImageUrl(img.driveid || img.id)+'" alt="'+(img.caption||'NPAIC')+'" onerror="this.src=\'hero-image.jpg\'">';
+        track.appendChild(slide);
+    }
+}
+
+// Load gallery from sheet data
+function loadGallery(images, videos){
+    var grid=document.getElementById('galleryGrid');
+    
+    // Add videos first
+    if(videos && videos.length>0){
+        for(var v=0;v<videos.length;v++){
+            var vid=videos[v];
+            var item=document.createElement('div');
+            item.className='gallery-item video reveal';
+            item.dataset.type='video';
+            item.setAttribute('data-videoid',vid.youtubeid || vid.id);
+            item.onclick=function(){openVideoModal(this.getAttribute('data-videoid'))};
+            item.innerHTML='<img src="'+getYouTubeThumbnail(vid.youtubeid || vid.id)+'" alt="'+(vid.title||'Video')+'"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff">▶</div><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.7);color:#fff;padding:8px;font-size:0.8rem">'+(vid.title||'Video')+'</div>';
+            grid.appendChild(item);
+        }
+    }
+    
+    // Add images
+    if(images && images.length>0){
+        for(var m=0;m<images.length;m++){
+            var img=images[m];
+            var imgItem=document.createElement('div');
+            imgItem.className='gallery-item reveal';
+            imgItem.dataset.type='image';
+            imgItem.setAttribute('data-imgid',img.driveid || img.id);
+            imgItem.onclick=function(){openImageModal(this.getAttribute('data-imgid'))};
+            imgItem.innerHTML='<img src="'+getDriveImageUrl(img.driveid || img.id)+'" alt="'+(img.caption||'Gallery')+'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.7);color:#fff;padding:8px;font-size:0.8rem">'+(img.caption||'')+'</div>';
+            grid.appendChild(imgItem);
+        }
+    }
+    
+    // Fallback if no data
+    if((!videos || videos.length===0) && (!images || images.length===0)){
+        grid.innerHTML='<div class="gallery-placeholder" style="padding:40px;text-align:center;grid-column:1/-1"><p>Gallery coming soon! Add images and videos to Google Sheets.</p></div>';
+    }
+    
+    reveal();
+}
+
+// Carousel functionality
+var currentSlide=0;
+function initCarousel(){
+    var track=document.getElementById('carouselTrack');
+    var slides=track.querySelectorAll('.carousel-slide');
+    var dotsContainer=document.getElementById('carouselDots');
+    dotsContainer.innerHTML='';
+    for(var i=0;i<slides.length;i++){
+        var dot=document.createElement('button');
+        dot.className='carousel-dot'+(i===0?' active':'');
+        dot.setAttribute('data-slide',i);
+        dot.onclick=function(){goToSlide(parseInt(this.getAttribute('data-slide')))};
+        dotsContainer.appendChild(dot);
+    }
+    if(slides.length>1)setInterval(function(){moveCarousel(1)},5000);
+}
+function moveCarousel(dir){
+    var track=document.getElementById('carouselTrack');
+    var slides=track.querySelectorAll('.carousel-slide');
+    if(slides.length===0)return;
+    currentSlide=(currentSlide+dir+slides.length)%slides.length;
+    updateCarousel();
+}
+function goToSlide(n){currentSlide=n;updateCarousel()}
+function updateCarousel(){
+    var track=document.getElementById('carouselTrack');
+    track.style.transform='translateX(-'+currentSlide*100+'%)';
+    var dots=document.querySelectorAll('.carousel-dot');
+    for(var i=0;i<dots.length;i++){
+        dots[i].classList.toggle('active',i===currentSlide);
+    }
+}
 </script>
 </body>
 </html>
