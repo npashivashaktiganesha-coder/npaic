@@ -553,7 +553,9 @@ function loadFromSheets() {
 }
     
 function loadCarousel(images) {
+    console.log('loadCarousel called with:', images);
     var track = document.getElementById('carouselTrack');
+    track.innerHTML = '';
     if(!images || images.length === 0) {
         track.innerHTML = '<div class="carousel-slide"><img src="hero-image.jpg" alt="NPAIC"></div>';
         return;
@@ -562,7 +564,7 @@ function loadCarousel(images) {
         var img = images[i];
         var slide = document.createElement('div');
         slide.className = 'carousel-slide';
-        slide.innerHTML = '<img src="' + getDriveImageUrl(img.Driveid) + '" alt="' + (img.Caption||'NPAIC') + '" onerror="this.src=\'hero-image.jpg\'">';
+        slide.innerHTML = '<img src="' + getDriveImageUrl(img.driveid) + '" alt="' + (img.caption||'NPAIC') + '" onerror="this.src=\'hero-image.jpg\'">';
         track.appendChild(slide);
     }
 }
@@ -721,6 +723,7 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
 
 
 
