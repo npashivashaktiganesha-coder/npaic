@@ -504,7 +504,7 @@ var SHEETS_CONFIG = {
 };
 
 function fetchSheetData(sheetId, sheetName) {
-    var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:csv&sheet=' + sheetName;
+    var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/export?format=csv&gid=0';
     return fetch(url).then(function(r){ return r.text(); }).then(function(t){ return parseCSV(t); }).catch(function(e){ console.log(e); return []; });
 }
 
@@ -710,4 +710,5 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
 
