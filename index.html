@@ -340,12 +340,9 @@
                 <div class="founder-content">
                     <h2>Late Shri Prabha Shankar Upadhyay & Mrs. Manju Upadhyay</h2>
                     <div class="tagline">"Satyameva Jayate - Truth Alone Triumphs"</div>
-                    <h3 style="color:var(--accent);margin-top:20px;font-size:1.1rem">Biopic</h3>
-                    <p>New Public Academy Inter College, Kalyanpur campus was founded by Late Mr. Prabha Shankar Upadhyay and Mrs. Manju Upadhyay in the year 2000, and is proudly serving since last 25 years. The lush green, pollution and noise-free, calm, sophisticated smart school is well placed with connected transports, broad roads and easy access.</p>
-                    <div class="vision-box"><h3>Our Vision</h3><p>Education is not preparation for life but it is learning how to responsibly go about it. We pay great attention to academics and personal excellence fostering the readiness of students in the outer world.</p></div>
-                    <h3 style="color:var(--accent);margin-top:15px;font-size:1.1rem">About School</h3>
-                    <p>We have been consistently producing meritorious students since quarter of a decade, all thanks to widely experienced and skilled staff who understand not only the pulse of students but also empowers them to overcome the plateau to bring out the best of their abilities.</p>
-                    <p>Our educational infrastructure is continuously updated to support the evolving requirements of modern education, ranging from smart classes, practical, sensory, custom curation to one-to-one teaching, competitive exams tutorials etc.</p>
+                    <p>Founded New Public Academy Inter College in 2001 with a vision to provide quality education to students of Kalyanpur and surrounding areas.</p>
+                    <p>Under his guidance, NPAIC has grown from a small school to a premier educational institution serving thousands of students.</p>
+                    <div class="vision-box"><h3>Our Vision</h3><p>To nurture young minds and create responsible citizens who contribute positively to society.</p></div>
                 </div>
             </div>
             <div class="section-header reveal"><h2>What We <span class="gradient">Offer</span></h2></div>
@@ -507,8 +504,8 @@ var SHEETS_CONFIG = {
 };
 
 function fetchSheetData(sheetId, sheetName) {
-    var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:csv&sheet=' + sheetName;
-    return fetch(url).then(function(r){ return r.text(); }).then(function(t){ return parseCSV(t); }).catch(function(e){ console.log(e); return []; });
+    var url = 'https://script.google.com/macros/s/AKfycbwcBXYJmFjMaIPZBUN7__RuuBIGduyj1jN3jlF0ovVfx5XKmXk2H-gG57fh67kX1GnO0w/exec?id=' + sheetId + '&sheet=' + sheetName;
+    return fetch(url).then(function(r){ return r.json(); }).catch(function(e){ console.log(e); return []; });
 }
 
 function parseCSV(csv) {
