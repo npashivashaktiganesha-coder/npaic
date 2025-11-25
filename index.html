@@ -504,8 +504,8 @@ var SHEETS_CONFIG = {
 };
 
 function fetchSheetData(sheetId, sheetName) {
-    var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/export?format=csv&gid=0';
-    return fetch(url).then(function(r){ return r.text(); }).then(function(t){ return parseCSV(t); }).catch(function(e){ console.log(e); return []; });
+    var url = 'https://script.google.com/macros/s/AKfycbxLYgCS2wwcO03gNgpQa1dSdc5xoX66aL5telfqgCF0pCfxefICS1AiCxsq2rNZLPnj9g/exec?id=' + sheetId + '&sheet=' + sheetName;
+    return fetch(url).then(function(r){ return r.json(); }).catch(function(e){ console.log(e); return []; });
 }
 
 function parseCSV(csv) {
@@ -710,5 +710,6 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
 
 
