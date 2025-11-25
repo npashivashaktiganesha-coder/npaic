@@ -756,13 +756,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     btn.disabled = true;
     var fd = new FormData(this);
     var data = {
-        timestamp: new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'}),
-        parentName: fd.get('parentName'),
-        phone: fd.get('phone'),
-        email: fd.get('email') || '',
-        studentName: fd.get('studentName'),
-        classApplying: fd.get('classApplying'),
-        message: fd.get('message') || ''
+        'Parent/Guardian Name': fd.get('parentName'),
+        'Phone Number': fd.get('phone'),
+        'Email Address': fd.get('email') || '',
+        'Student Name': fd.get('studentName'),
+        'Class Applying For': fd.get('classApplying'),
+        'Message': fd.get('message') || ''
     };
     fetch('https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec', {
         method: 'POST',
