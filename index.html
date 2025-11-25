@@ -201,7 +201,7 @@
 </head>
 <body>
     <div class="loader" id="loader"><div class="loader-content"><img src="logo.jpg" alt="NPAIC" class="loader-logo"><div class="loader-text">Loading...</div></div></div>
-    
+
     <div class="admission-ticker">
         <div class="ticker-content">
             <span>📞 CALL NOW: 8604012282 | 8960064683</span>
@@ -212,7 +212,7 @@
             <span>🎉 ADMISSIONS OPEN FOR SESSION 2025-2026</span>
         </div>
     </div>
-    
+
     <nav class="navbar">
         <div class="logo-container">
             <img src="logo.jpg" alt="NPAIC" class="logo">
@@ -603,7 +603,7 @@ var SHEETS_CONFIG = {
 };
 
 function fetchSheetData(sheetId, sheetName) {
-    var url = 'https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec?id=' + sheetId + '&sheet=' + sheetName;
+    var url = 'https://script.google.com/macros/s/AKfycbwcBXYJmFjMaIPZBUN7__RuuBIGduyj1jN3jlF0ovVfx5XKmXk2H-gG57fh67kX1GnO0w/exec?id=' + sheetId + '&sheet=' + sheetName;
     return fetch(url).then(function(r){ return r.json(); }).catch(function(e){ console.log(e); return []; });
 }
 
@@ -756,12 +756,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     btn.disabled = true;
     var fd = new FormData(this);
     var data = {
-        'Parent/Guardian Name': fd.get('parentName'),
-        'Phone Number': fd.get('phone'),
-        'Email Address': fd.get('email') || '',
-        'Student Name': fd.get('studentName'),
-        'Class Applying For': fd.get('classApplying'),
-        'Message': fd.get('message') || ''
+        timestamp: new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'}),
+        parentName: fd.get('parentName'),
+        phone: fd.get('phone'),
+        email: fd.get('email') || '',
+        studentName: fd.get('studentName'),
+        classApplying: fd.get('classApplying'),
+        message: fd.get('message') || ''
     };
     fetch('https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec', {
         method: 'POST',
@@ -807,4 +808,3 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
-
