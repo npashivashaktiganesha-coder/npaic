@@ -6,17 +6,12 @@
     <title>NPAIC - New Public Academy Inter College</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--primary:#1a0a2e;--secondary:#16213e;--accent:#00d4ff;--accent2:#7b2cbf;--accent3:#ff6b35;--gold:#ffd700;--text:#fff;--text-muted:#a0a0a0;--card-bg:rgba(255,255,255,0.05)}
+        :root{--primary:#1a0a2e;--secondary:#16213e;--accent:#00d4ff;--accent2:#7b2cbf;--gold:#ffd700;--text:#fff;--text-muted:#a0a0a0;--card-bg:rgba(255,255,255,0.05)}
         *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 50%,#0f0c29 100%);color:var(--text);overflow-x:hidden;line-height:1.6;min-height:100vh}
-        
-        /* Admission Ticker */
         .admission-ticker{background:#2c3e50;padding:8px 0;overflow:hidden;position:fixed;top:0;left:0;width:100%;z-index:1001}
-        @keyframes tickerBg{0%{background-position:0% 50%}100%{background-position:200% 50%}}
         .ticker-content{display:flex;animation:tickerScroll 15s linear infinite;white-space:nowrap}
         .ticker-content span{padding:0 80px;font-weight:600;color:#ffd700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px}
-        .ticker-content span i{margin-right:8px}
         @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-        
         .navbar{position:fixed;top:32px;left:0;width:100%;padding:10px 50px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(26,10,46,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,0.2)}
         .logo-container{display:flex;align-items:center;gap:12px}
         .logo{width:45px;height:45px;border-radius:50%;border:2px solid var(--accent);box-shadow:0 0 15px rgba(0,212,255,0.5);object-fit:cover;background:#fff}
@@ -36,8 +31,6 @@
         .mobile-menu-btn{display:none;background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer}
         .page{display:none;min-height:100vh;padding-top:100px}
         .page.active{display:block}
-        
-        /* Hero Banner */
         .hero-banner{width:100%;position:relative}
         .hero-banner img{width:100%;height:auto;display:block}
         .hero-content{padding:30px 50px;background:linear-gradient(180deg,rgba(26,10,46,0.9),var(--primary))}
@@ -45,23 +38,19 @@
         .hero-content h1 .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .hero-content p{color:var(--text-muted);font-size:0.9rem;margin-bottom:15px}
         .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
-        
-        .stats-section{padding:40px 50px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-        
-        /* Image Carousel */
         .carousel-section{padding:20px 50px 40px;overflow:hidden}
-        .carousel-container{position:relative;max-width:1000px;margin:0 auto;border-radius:15px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.3);background:#000}
+        .carousel-container{position:relative;max-width:1200px;margin:0 auto;border-radius:15px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.3);background:#000}
         .carousel-track{display:flex;transition:transform 0.5s ease}
-        .carousel-slide{min-width:100%;position:relative}
-        .carousel-slide img{width:100%;height:auto;max-height:500px;object-fit:contain;display:block;margin:0 auto}
-        .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;padding:15px 18px;cursor:pointer;font-size:1.2rem;border-radius:5px;transition:all 0.3s;z-index:10}
+        .carousel-slide{min-width:100%;position:relative;display:flex;align-items:center;justify-content:center;background:#000}
+        .carousel-slide img{width:100%;height:500px;object-fit:contain}
+        .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.7);color:#fff;border:none;padding:15px 20px;cursor:pointer;font-size:1.5rem;border-radius:5px;transition:all 0.3s;z-index:10}
         .carousel-btn:hover{background:var(--accent)}
         .carousel-btn.prev{left:15px}
         .carousel-btn.next{right:15px}
         .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:15px}
         .carousel-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s;border:none}
         .carousel-dot.active{background:var(--accent);transform:scale(1.2)}
-        @media(max-width:768px){.carousel-section{padding:15px}.carousel-slide img{max-height:300px}.carousel-btn{padding:10px 12px;font-size:1rem}}
+        .stats-section{padding:40px 50px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
         .stat-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:22px 12px;text-align:center;transition:all 0.4s}
         .stat-card:hover{transform:translateY(-6px);border-color:var(--accent)}
         .stat-icon{width:45px;height:45px;margin:0 auto 10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px}
@@ -105,14 +94,13 @@
         .map-container iframe{width:100%;height:100%;min-height:280px;border:none}
         .social-section{padding:35px;text-align:center}
         .social-links{display:flex;justify-content:center;gap:15px;margin-top:15px}
-        .social-link{width:45px;height:45px;background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--text);text-decoration:none;transition:all 0.3s}
+        .social-link{width:50px;height:50px;background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s}
         .social-link:hover{transform:translateY(-5px);border-color:var(--accent)}
+        .social-link svg{width:28px;height:28px}
         .anniversary-banner{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(123,44,191,0.1));border-top:1px solid rgba(0,212,255,0.2);padding:30px;text-align:center}
         .anniversary-number{font-family:'Orbitron',sans-serif;font-size:3.5rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
         .anniversary-text{font-size:1.4rem;font-family:'Playfair Display',serif}
         .anniversary-text .highlight{color:var(--accent)}
-        .anniversary-tagline{color:var(--text-muted);font-size:0.85rem;margin-top:6px}
-        .anniversary-tagline span{color:var(--gold)}
         .founders-section{padding:40px 50px}
         .founder-hero{display:grid;grid-template-columns:1fr 1.2fr;gap:35px;align-items:center;margin-bottom:35px}
         .founder-image-frame{width:100%;max-width:320px;aspect-ratio:1;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:22px;padding:4px}
@@ -123,9 +111,6 @@
         .vision-box{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:15px;padding:15px;margin-top:15px}
         .vision-box h3{color:var(--accent);margin-bottom:6px;font-size:0.95rem}
         .vision-box p{font-style:italic;font-size:0.85rem}
-        .offerings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:25px}
-        .offering-item{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:10px;display:flex;align-items:center;gap:6px;transition:all 0.3s;font-size:0.8rem}
-        .offering-item:hover{border-color:var(--accent);transform:translateX(4px)}
         .management-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;padding:40px 50px}
         .member-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:16px;padding:22px;text-align:center;transition:all 0.4s}
         .member-card:hover{transform:translateY(-6px);border-color:var(--accent)}
@@ -141,33 +126,22 @@
         .facility-content h3{font-size:1rem;margin-bottom:5px}
         .facility-content p{color:var(--text-muted);font-size:0.75rem}
         .toppers-section{padding:40px 50px}
-        .toppers-year{margin-bottom:30px}
-        .year-header{display:flex;align-items:center;gap:12px;margin-bottom:15px}
-        .year-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));padding:7px 15px;border-radius:50px;font-family:'Orbitron',sans-serif;font-size:0.85rem}
-        .year-line{flex:1;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
-        .toppers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-        .topper-card{background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:14px;padding:16px;text-align:center;transition:all 0.4s;position:relative}
-        .topper-card.rank-1{border-color:var(--gold)}
-        .topper-card.rank-1 .rank-badge{background:linear-gradient(135deg,var(--gold),#ffaa00)}
-        .topper-card.rank-2 .rank-badge{background:linear-gradient(135deg,#c0c0c0,#a0a0a0)}
-        .topper-card.rank-3 .rank-badge{background:linear-gradient(135deg,#cd7f32,#b87333)}
-        .topper-card:hover{transform:translateY(-5px)}
-        .rank-badge{position:absolute;top:-7px;right:10px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem}
-        .topper-avatar{width:55px;height:55px;margin:0 auto 8px;background:linear-gradient(135deg,var(--secondary),var(--primary));border:2px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-        .topper-card h4{font-size:0.9rem;margin-bottom:3px}
-        .topper-card .class-info{color:var(--accent);font-size:0.7rem;margin-bottom:5px}
-        .topper-card .percentage{font-family:'Orbitron',sans-serif;font-size:1.1rem;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .toppers-table{background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:16px;overflow:hidden;margin-top:20px}
+        .toppers-table table{width:100%;border-collapse:collapse}
+        .toppers-table th{background:linear-gradient(135deg,var(--accent),var(--accent2));padding:15px;text-align:left;font-size:0.9rem}
+        .toppers-table td{padding:12px 15px;border-bottom:1px solid rgba(0,212,255,0.1);font-size:0.85rem}
+        .toppers-table tr:hover{background:rgba(0,212,255,0.05)}
+        .toppers-table tr:last-child td{border-bottom:none}
         .gallery-section{padding:40px 50px}
         .gallery-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:25px}
         .gallery-tab{padding:7px 18px;background:var(--card-bg);border:1px solid rgba(0,212,255,0.2);border-radius:50px;cursor:pointer;font-size:0.8rem;color:var(--text);transition:all 0.3s}
         .gallery-tab:hover,.gallery-tab.active{background:var(--accent);color:var(--primary)}
-        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px}
-        .gallery-item{aspect-ratio:16/9;background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:14px;overflow:hidden;position:relative;cursor:pointer;transition:all 0.4s}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+        .gallery-item{aspect-ratio:16/10;background:var(--card-bg);border:1px solid rgba(0,212,255,0.15);border-radius:14px;overflow:hidden;position:relative;cursor:pointer;transition:all 0.4s}
         .gallery-item:hover{transform:scale(1.02);border-color:var(--accent)}
         .gallery-item img{width:100%;height:100%;object-fit:cover}
-        .gallery-item.video::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:45px;height:45px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-        .gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--secondary),var(--primary));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted)}
-        .gallery-placeholder .gp-icon{font-size:1.8rem;margin-bottom:6px;color:var(--accent)}
+        .gallery-item .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:#fff;padding:10px;font-size:0.8rem}
+        .gallery-item.video .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff}
         .contact-section{padding:40px 50px}
         .contact-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
         .contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
@@ -186,10 +160,14 @@
         .form-success.active{display:block}
         .form-success .success-icon{font-size:2.5rem;color:#4ade80;margin-bottom:12px}
         .contact-form.hidden{display:none}
-        .footer{background:rgba(0,0,0,0.4);padding:35px 50px 18px;border-top:1px solid rgba(0,212,255,0.1)}
+        .footer{background:rgba(0,0,0,0.5);padding:35px 50px 18px;border-top:1px solid rgba(0,212,255,0.1)}
         .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:25px;margin-bottom:20px}
         .footer-brand h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .footer-brand p{color:var(--text-muted);font-size:0.75rem}
+        .footer-brand p{color:var(--text-muted);font-size:0.75rem;margin-bottom:12px}
+        .footer-social{display:flex;gap:10px}
+        .footer-social a{width:35px;height:35px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+        .footer-social a svg{width:20px;height:20px}
+        .footer-social a:hover{transform:translateY(-3px)}
         .footer-links h4{font-size:0.85rem;margin-bottom:10px;color:var(--accent)}
         .footer-links ul{list-style:none}
         .footer-links li{margin-bottom:5px}
@@ -217,28 +195,27 @@
         .mobile-nav.active{display:flex}
         .mobile-nav-close{position:absolute;top:15px;right:20px;background:none;border:none;color:var(--accent);font-size:1.6rem;cursor:pointer}
         .mobile-nav a{color:var(--text);text-decoration:none;font-size:1rem}
-        @media(max-width:992px){.navbar{padding:8px 15px;top:32px}.nav-links,.nav-cta{display:none}.mobile-menu-btn{display:block}.hero-content{padding:20px}.hero-content h1{font-size:1.5rem}.founder-hero{grid-template-columns:1fr}.contact-grid-home,.contact-page-grid{grid-template-columns:1fr}.stats-section{grid-template-columns:repeat(2,1fr);padding:30px 20px}}
-        @media(max-width:768px){.admission-ticker{padding:6px 0}.ticker-content span{font-size:0.75rem;padding:0 40px}.stats-section{grid-template-columns:1fr;padding:25px 15px}.classes-section,.features-section,.founders-section,.toppers-section,.gallery-section,.contact-section,.contact-section-home{padding:25px 15px}.form-row,.contact-cards-grid,.contact-info-cards{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;text-align:center}.footer{padding:25px 15px 12px}.anniversary-number{font-size:2.8rem}.management-grid,.facilities-grid{padding:25px 15px}.hero-content h1{font-size:1.3rem}.hero-content p{font-size:0.8rem}.page{padding-top:90px}}
+        @media(max-width:992px){.navbar{padding:8px 15px;top:32px}.nav-links,.nav-cta{display:none}.mobile-menu-btn{display:block}.hero-content{padding:20px}.hero-content h1{font-size:1.5rem}.founder-hero{grid-template-columns:1fr}.contact-grid-home,.contact-page-grid{grid-template-columns:1fr}.stats-section{grid-template-columns:repeat(2,1fr);padding:30px 20px}.carousel-section{padding:15px}.carousel-slide img{height:300px}}
+        @media(max-width:768px){.stats-section{grid-template-columns:1fr;padding:25px 15px}.classes-section,.features-section,.founders-section,.toppers-section,.gallery-section,.contact-section,.contact-section-home{padding:25px 15px}.form-row,.contact-cards-grid,.contact-info-cards{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;text-align:center}.footer{padding:25px 15px 12px}.footer-social{justify-content:center}.anniversary-number{font-size:2.8rem}.management-grid,.facilities-grid{padding:25px 15px}.carousel-slide img{height:250px}}
     </style>
 </head>
 <body>
-    <div class="loader" id="loader"><div class="loader-content"><img src="logo.jpg" alt="NPAIC" class="loader-logo" onerror="this.style.background='#fff'"><div class="loader-text">Loading...</div></div></div>
+    <div class="loader" id="loader"><div class="loader-content"><img src="logo.jpg" alt="NPAIC" class="loader-logo"><div class="loader-text">Loading...</div></div></div>
     
-    <!-- Admission Ticker -->
     <div class="admission-ticker">
         <div class="ticker-content">
-            <span>🎓 ADMISSIONS OPEN FOR SESSION 2025-2026 🎓</span>
-            <span>📞 CALL NOW: 8604012282 | 8960064683 📞</span>
-            <span>🏫 PLAYGROUP TO CLASS 12TH | CBSE PATTERN 🏫</span>
-            <span>🎓 ADMISSIONS OPEN FOR SESSION 2025-2026 🎓</span>
-            <span>📞 CALL NOW: 8604012282 | 8960064683 📞</span>
-            <span>🏫 PLAYGROUP TO CLASS 12TH | CBSE PATTERN 🏫</span>
+            <span>📞 CALL NOW: 8604012282 | 8960064683</span>
+            <span>🎓 PLAYGROUP TO CLASS 12TH | CBSE PATTERN</span>
+            <span>🎉 ADMISSIONS OPEN FOR SESSION 2025-2026</span>
+            <span>📞 CALL NOW: 8604012282 | 8960064683</span>
+            <span>🎓 PLAYGROUP TO CLASS 12TH | CBSE PATTERN</span>
+            <span>🎉 ADMISSIONS OPEN FOR SESSION 2025-2026</span>
         </div>
     </div>
     
     <nav class="navbar">
         <div class="logo-container">
-            <img src="logo.jpg" alt="NPAIC" class="logo" onerror="this.style.background='#fff'">
+            <img src="logo.jpg" alt="NPAIC" class="logo">
             <div class="school-name">NPAIC<span>New Public Academy Inter College</span></div>
         </div>
         <ul class="nav-links">
@@ -251,8 +228,8 @@
             <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
         </ul>
         <div class="nav-cta">
-            <a href="tel:8604012282" class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg> Call</a>
-            <a href="https://wa.me/918604012282" target="_blank" class="btn btn-whatsapp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> WhatsApp</a>
+            <a href="tel:8604012282" class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" fill="currentColor"/></svg> Call</a>
+            <a href="https://wa.me/918604012282" target="_blank" class="btn btn-whatsapp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" fill="currentColor"/></svg> WhatsApp</a>
             <a href="#" onclick="showPage('contact')" class="btn btn-yellow">Contact Us</a>
         </div>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
@@ -267,15 +244,11 @@
         <a href="#" onclick="showPage('toppers');toggleMobileMenu()">Toppers</a>
         <a href="#" onclick="showPage('gallery');toggleMobileMenu()">Gallery</a>
         <a href="#" onclick="showPage('contact');toggleMobileMenu()">Contact</a>
-        <a href="tel:8604012282">📞 8604012282</a>
-        <a href="https://wa.me/918604012282" target="_blank">💬 WhatsApp</a>
     </div>
 
     <!-- HOME PAGE -->
     <div class="page active" id="page-home">
-        <section class="hero-banner">
-            <img src="hero-image.jpg" alt="New Public Academy Inter College - Admission Open">
-        </section>
+        <section class="hero-banner"><img src="hero-image.jpg" alt="NPAIC"></section>
         <section class="hero-content">
             <h1>Shaping <span class="highlight">Future Leaders</span></h1>
             <p>CBSE Pattern | Playgroup to Class 12th | Since 2001</p>
@@ -285,12 +258,9 @@
             </div>
         </section>
 
-        <!-- Image Carousel -->
         <section class="carousel-section">
             <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- Images loaded from CONFIG automatically -->
-                </div>
+                <div class="carousel-track" id="carouselTrack"></div>
                 <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
                 <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
             </div>
@@ -307,12 +277,12 @@
         <section class="classes-section">
             <div class="section-header reveal"><h2>Our <span class="gradient">Academic Programs</span></h2><p>Comprehensive education from playgroup to senior secondary</p></div>
             <div class="classes-grid">
-                <div class="class-card reveal"><div class="class-icon">🎒</div><h3>Pre-Primary</h3><div class="grade">Playgroup • Nursery • KG</div><div class="subjects"><span class="subject-tag">Play-based Learning</span><span class="subject-tag">Motor Skills</span></div></div>
-                <div class="class-card reveal"><div class="class-icon">📖</div><h3>Primary</h3><div class="grade">Class I to V</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Maths</span><span class="subject-tag">Computer</span><span class="subject-tag">Hindi</span></div></div>
-                <div class="class-card reveal"><div class="class-icon">🔬</div><h3>Middle School</h3><div class="grade">Class VI to VIII</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Maths</span><span class="subject-tag">Science</span><span class="subject-tag">Social Studies</span></div></div>
-                <div class="class-card reveal"><div class="class-icon">📐</div><h3>Secondary</h3><div class="grade">Class IX & X</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Science</span><span class="subject-tag">Maths</span><span class="subject-tag">Hindi</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">🎒</div><h3>Pre-Primary</h3><div class="grade">Playgroup • Nursery • KG</div><div class="subjects"><span class="subject-tag">Play-based Learning</span><span class="subject-tag">Motor Skills</span><span class="subject-tag">Phonics</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📖</div><h3>Primary</h3><div class="grade">Class I to V</div><div class="subjects"><span class="subject-tag">English</span><span class="subject-tag">Maths</span><span class="subject-tag">Hindi</span><span class="subject-tag">EVS</span><span class="subject-tag">Computer</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">🔬</div><h3>Middle School</h3><div class="grade">Class VI to VIII</div><div class="subjects"><span class="subject-tag">Science</span><span class="subject-tag">Maths</span><span class="subject-tag">Social Studies</span><span class="subject-tag">English</span><span class="subject-tag">Hindi</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📐</div><h3>Secondary</h3><div class="grade">Class IX & X</div><div class="subjects"><span class="subject-tag">Science</span><span class="subject-tag">Maths</span><span class="subject-tag">Social Science</span><span class="subject-tag">English</span><span class="subject-tag">Hindi</span></div></div>
                 <div class="class-card reveal"><div class="class-icon">🎓</div><h3>Sr. Secondary - Science</h3><div class="grade">Class XI & XII</div><div class="subjects"><span class="subject-tag">Physics</span><span class="subject-tag">Chemistry</span><span class="subject-tag">Maths</span><span class="subject-tag">Biology</span></div></div>
-                <div class="class-card reveal"><div class="class-icon">📊</div><h3>Sr. Secondary - Commerce</h3><div class="grade">Class XI & XII</div><div class="subjects"><span class="subject-tag">Accountancy</span><span class="subject-tag">Business</span><span class="subject-tag">Economics</span></div></div>
+                <div class="class-card reveal"><div class="class-icon">📊</div><h3>Sr. Secondary - Commerce</h3><div class="grade">Class XI & XII</div><div class="subjects"><span class="subject-tag">Accountancy</span><span class="subject-tag">Business Studies</span><span class="subject-tag">Economics</span></div></div>
             </div>
         </section>
 
@@ -331,135 +301,121 @@
         </section>
 
         <section class="contact-section-home">
-            <div class="section-header reveal"><h2>Get In <span class="gradient">Touch</span></h2><p>We're here to help with admissions and inquiries</p></div>
+            <div class="section-header reveal"><h2>Get In <span class="gradient">Touch</span></h2></div>
             <div class="contact-grid-home">
                 <div class="contact-cards-grid reveal">
-                    <a href="tel:8604012282" class="contact-card-new call">
-                        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
-                        <h4>Call Us</h4>
-                        <p>Speak directly with our team</p>
-                        <div class="highlight-text">8604012282</div>
-                    </a>
-                    <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp">
-                        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
-                        <h4>WhatsApp Us</h4>
-                        <p>Quick response guaranteed</p>
-                        <div class="highlight-text">+91 8604012282</div>
-                    </a>
-                    <a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank" class="contact-card-new location">
-                        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                        <h4>Visit Us</h4>
-                        <p>Opposite Water Tank</p>
-                        <div class="highlight-text" style="font-size:0.8rem">Kalyanpur East, Lucknow</div>
-                    </a>
-                    <div class="contact-card-new hours">
-                        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
-                        <h4>Office Hours</h4>
-                        <p>Monday - Saturday</p>
-                        <div class="highlight-text">8:00 AM - 4:00 PM</div>
-                    </div>
+                    <a href="tel:8604012282" class="contact-card-new call"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div><h4>Call Us</h4><p>Speak directly</p><div class="highlight-text">8604012282</div></a>
+                    <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div><h4>WhatsApp</h4><p>Quick response</p><div class="highlight-text">+91 8604012282</div></a>
+                    <a href="https://maps.google.com/?q=New+Public+Academy+Inter+College+Lucknow" target="_blank" class="contact-card-new location"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><h4>Visit Us</h4><p>Opposite Water Tank</p><div class="highlight-text" style="font-size:0.75rem">Kalyanpur, Lucknow</div></a>
+                    <div class="contact-card-new hours"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg></div><h4>Hours</h4><p>Mon - Sat</p><div class="highlight-text">8 AM - 4 PM</div></div>
                 </div>
                 <div class="map-container reveal">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8!2d80.9744016!3d26.9036577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5!2d80.9744!3d26.9037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
 
         <section class="social-section reveal">
-            <div class="section-header"><h2>Connect With <span class="gradient">Us</span></h2><p>Follow our journey</p></div>
+            <div class="section-header"><h2>Connect With <span class="gradient">Us</span></h2></div>
             <div class="social-links">
-                <a href="YOUR_FACEBOOK_URL" class="social-link" target="_blank" style="color:#1877f2"><svg viewBox="0 0 24 24" width="28" height="28" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                <a href="YOUR_INSTAGRAM_URL" class="social-link" target="_blank" style="color:#e4405f"><svg viewBox="0 0 24 24" width="28" height="28" fill="#e4405f"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="YOUR_YOUTUBE_URL" class="social-link" target="_blank" style="color:#ff0000"><svg viewBox="0 0 24 24" width="28" height="28" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="#" class="social-link" target="_blank"><svg viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="#" class="social-link" target="_blank"><svg viewBox="0 0 24 24" fill="#e4405f"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="#" class="social-link" target="_blank"><svg viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
             </div>
         </section>
 
         <section class="anniversary-banner reveal">
-            <div class="anniversary-number">24</div>
-            <div class="anniversary-text">Years of <span class="highlight">Educational Excellence</span></div>
-            <div class="anniversary-tagline">✨ Nurturing Minds Since 2001 • <span>सत्यमेव जयते</span> ✨</div>
+            <div class="anniversary-number">24+</div>
+            <div class="anniversary-text">Years of <span class="highlight">Excellence</span></div>
+            <p style="color:var(--text-muted);margin-top:8px">Since 2001 | <span style="color:var(--gold)">सत्यमेव जयते</span></p>
         </section>
     </div>
 
     <!-- FOUNDERS PAGE -->
     <div class="page" id="page-founders">
         <section class="founders-section">
-            <div class="section-header reveal"><h2>Our <span class="gradient">Visionary Founders</span></h2><p>Building a legacy since 2001</p></div>
-            <div class="founder-hero">
-                <div class="founder-image reveal"><div class="founder-image-frame"><div class="founder-image-inner">👥</div></div></div>
-                <div class="founder-content reveal">
-                    <h2>Late Mr. Prabha Shankar Upadhyay & Mrs. Manju Upadhyay</h2>
-                    <div class="tagline">"सत्यमेव जयते" - Truth Alone Triumphs</div>
-                    <p>New Public Academy Inter College, Kalyanpur campus was founded in 2001, serving proudly for 24 years.</p>
-                    <p>The lush green, pollution-free, sophisticated smart school is well placed with connected transports.</p>
-                    <div class="vision-box"><h3>👁️ Our Vision</h3><p>"Education is not preparation for life but learning how to responsibly go about it."</p></div>
+            <div class="section-header reveal"><h2>Our <span class="gradient">Founders</span></h2><p>Visionaries who built NPAIC</p></div>
+            <div class="founder-hero reveal">
+                <div class="founder-image-frame"><div class="founder-image-inner">👨‍🏫</div></div>
+                <div class="founder-content">
+                    <h2>Late Shri Ram Bhawan Shukla</h2>
+                    <div class="tagline">"Education is the foundation of a bright future"</div>
+                    <p>Founded New Public Academy Inter College in 2001 with a vision to provide quality education to students of Kalyanpur and surrounding areas.</p>
+                    <p>Under his guidance, NPAIC has grown from a small school to a premier educational institution serving thousands of students.</p>
+                    <div class="vision-box"><h3>Our Vision</h3><p>To nurture young minds and create responsible citizens who contribute positively to society.</p></div>
                 </div>
             </div>
-            <div class="section-header reveal"><h2>Our <span class="gradient">Unique Offerings</span></h2></div>
-            <div class="offerings-grid reveal">
-                <div class="offering-item">📺 Smart Classes</div>
-                <div class="offering-item">📚 Library</div>
-                <div class="offering-item">🏅 Competitive Exams</div>
-                <div class="offering-item">🔬 Practical Knowledge</div>
-                <div class="offering-item">💻 Computer Lab</div>
-                <div class="offering-item">🧪 Science Labs</div>
-                <div class="offering-item">🎵 Dance & Music</div>
-                <div class="offering-item">⚽ Playground</div>
-                <div class="offering-item">📹 CCTV Coverage</div>
-                <div class="offering-item">⚡ Power Backup</div>
-                <div class="offering-item">🛡️ 24/7 Security</div>
-                <div class="offering-item">🤝 Accessible Management</div>
+            <div class="section-header reveal"><h2>What We <span class="gradient">Offer</span></h2></div>
+            <div class="features-grid" style="padding:0 0 40px 0">
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>CBSE Pattern</h4><p>Modern curriculum</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Experienced Faculty</h4><p>50+ teachers</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Smart Classes</h4><p>Digital learning</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Science Labs</h4><p>Practical learning</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Computer Lab</h4><p>IT education</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Library</h4><p>10,000+ books</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Sports Ground</h4><p>Multiple sports</p></div>
+                <div class="feature-card reveal"><div class="f-icon">✅</div><h4>Transport</h4><p>Safe school buses</p></div>
             </div>
         </section>
     </div>
 
     <!-- MANAGEMENT PAGE -->
     <div class="page" id="page-management">
-        <section style="padding-top:30px;">
-            <div class="section-header reveal"><h2>Management <span class="gradient">Committee</span></h2><p>Dedicated leaders guiding our institution</p></div>
-            <div class="management-grid">
-                <div class="member-card reveal"><div class="member-avatar">👔</div><h3>Chairperson</h3><div class="role">Chief Administrator</div><p>Overseeing strategic direction</p></div>
-                <div class="member-card reveal"><div class="member-avatar">🎓</div><h3>Principal</h3><div class="role">Academic Head</div><p>Leading academic excellence</p></div>
-                <div class="member-card reveal"><div class="member-avatar">⚙️</div><h3>Administrator</h3><div class="role">Operations Head</div><p>Managing daily operations</p></div>
-                <div class="member-card reveal"><div class="member-avatar">👨‍🏫</div><h3>Academic Coordinator</h3><div class="role">Curriculum Head</div><p>Designing programs</p></div>
-            </div>
-        </section>
+        <section style="padding:40px 50px"><div class="section-header reveal"><h2>Our <span class="gradient">Management</span></h2><p>Dedicated team leading NPAIC</p></div></section>
+        <div class="management-grid">
+            <div class="member-card reveal"><div class="member-avatar">👨‍💼</div><h3>Manager</h3><div class="role">School Management</div><p>Overall administration and development</p></div>
+            <div class="member-card reveal"><div class="member-avatar">👨‍🏫</div><h3>Principal</h3><div class="role">Academic Head</div><p>Leading academic excellence and discipline</p></div>
+            <div class="member-card reveal"><div class="member-avatar">👩‍💼</div><h3>Vice Principal</h3><div class="role">Administration</div><p>Managing daily operations and coordination</p></div>
+            <div class="member-card reveal"><div class="member-avatar">👨‍🏫</div><h3>Academic Coordinator</h3><div class="role">Curriculum</div><p>Ensuring quality education delivery</p></div>
+            <div class="member-card reveal"><div class="member-avatar">👩‍🏫</div><h3>Exam Controller</h3><div class="role">Examinations</div><p>Managing all examination processes</p></div>
+            <div class="member-card reveal"><div class="member-avatar">👨‍💻</div><h3>Office Administrator</h3><div class="role">Office Management</div><p>Handling administrative tasks</p></div>
+        </div>
     </div>
 
     <!-- FACILITIES PAGE -->
     <div class="page" id="page-facilities">
-        <section style="padding-top:30px;">
-            <div class="section-header reveal"><h2>World-Class <span class="gradient">Facilities</span></h2><p>State-of-the-art infrastructure</p></div>
-            <div class="facilities-grid">
-                <div class="facility-card reveal"><div class="facility-image">📺</div><div class="facility-content"><h3>Smart Classrooms</h3><p>Interactive digital boards and multimedia learning</p></div></div>
-                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#7b2cbf,#9d4edd)">🧪</div><div class="facility-content"><h3>Science Laboratories</h3><p>Physics, Chemistry and Biology labs</p></div></div>
-                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#ff6b35,#ff8c42)">💻</div><div class="facility-content"><h3>Computer Lab</h3><p>Modern systems with high-speed internet</p></div></div>
-                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#059669,#10b981)">📚</div><div class="facility-content"><h3>Library</h3><p>Thousands of books and resources</p></div></div>
-                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)">⚽</div><div class="facility-content"><h3>Sports Ground</h3><p>Cricket, football, athletics facilities</p></div></div>
-                <div class="facility-card reveal"><div class="facility-image" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">🛡️</div><div class="facility-content"><h3>Security & CCTV</h3><p>24/7 surveillance for safety</p></div></div>
-            </div>
-        </section>
+        <section style="padding:40px 50px"><div class="section-header reveal"><h2>Our <span class="gradient">Facilities</span></h2><p>World-class infrastructure for holistic development</p></div></section>
+        <div class="facilities-grid">
+            <div class="facility-card reveal"><div class="facility-image">📺</div><div class="facility-content"><h3>Smart Classrooms</h3><p>Interactive digital boards and projectors for engaging learning experience</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🔬</div><div class="facility-content"><h3>Science Laboratories</h3><p>Well-equipped Physics, Chemistry and Biology labs for practical learning</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">💻</div><div class="facility-content"><h3>Computer Lab</h3><p>Modern computers with high-speed internet for digital literacy</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">📚</div><div class="facility-content"><h3>Library</h3><p>Vast collection of 10,000+ books, magazines and reference materials</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🏃</div><div class="facility-content"><h3>Sports Ground</h3><p>Large playground for cricket, football, volleyball and athletics</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🚌</div><div class="facility-content"><h3>School Transport</h3><p>Safe and comfortable buses covering all major routes</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🎭</div><div class="facility-content"><h3>Auditorium</h3><p>Large hall for cultural programs, seminars and events</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🏥</div><div class="facility-content"><h3>Medical Room</h3><p>First aid facility with trained staff for emergencies</p></div></div>
+            <div class="facility-card reveal"><div class="facility-image">🎨</div><div class="facility-content"><h3>Art & Craft Room</h3><p>Dedicated space for creative activities and artistic expression</p></div></div>
+        </div>
     </div>
 
     <!-- TOPPERS PAGE -->
     <div class="page" id="page-toppers">
         <section class="toppers-section">
-            <div class="section-header reveal"><h2>Our <span class="gradient">Achievers</span></h2><p>Celebrating excellence</p></div>
-            <div class="toppers-year reveal">
-                <div class="year-header"><div class="year-badge">2024 - Class XII</div><div class="year-line"></div></div>
-                <div class="toppers-grid">
-                    <div class="topper-card rank-1"><div class="rank-badge">1</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Science</div><div class="percentage">98.2%</div></div>
-                    <div class="topper-card rank-2"><div class="rank-badge">2</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Science</div><div class="percentage">96.8%</div></div>
-                    <div class="topper-card rank-3"><div class="rank-badge">3</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class XII - Commerce</div><div class="percentage">95.4%</div></div>
-                </div>
-            </div>
-            <div class="toppers-year reveal">
-                <div class="year-header"><div class="year-badge">2024 - Class X</div><div class="year-line"></div></div>
-                <div class="toppers-grid">
-                    <div class="topper-card rank-1"><div class="rank-badge">1</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">97.6%</div></div>
-                    <div class="topper-card rank-2"><div class="rank-badge">2</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">96.2%</div></div>
-                    <div class="topper-card rank-3"><div class="rank-badge">3</div><div class="topper-avatar">🎓</div><h4>Student Name</h4><div class="class-info">Class X</div><div class="percentage">95.0%</div></div>
-                </div>
+            <div class="section-header reveal"><h2>Our <span class="gradient">Toppers</span></h2><p>Class XII UP Board Toppers</p></div>
+            <div class="toppers-table reveal">
+                <table>
+                    <tr><th>S.No.</th><th>Session</th><th>Name</th></tr>
+                    <tr><td>1</td><td>2004-2005</td><td>Shivesh Tripathi</td></tr>
+                    <tr><td>2</td><td>2005-2006</td><td>Vijaya Vishwakarma</td></tr>
+                    <tr><td>3</td><td>2006-2007</td><td>Pallavi Singh</td></tr>
+                    <tr><td>4</td><td>2007-2008</td><td>Manish Chandra Joshi</td></tr>
+                    <tr><td>5</td><td>2008-2009</td><td>Kishore Singh Fartiyal</td></tr>
+                    <tr><td>6</td><td>2009-2010</td><td>Pradeep Joshi</td></tr>
+                    <tr><td>7</td><td>2010-2011</td><td>Amit Sharma</td></tr>
+                    <tr><td>8</td><td>2011-2012</td><td>Minakshi Bhojak</td></tr>
+                    <tr><td>9</td><td>2012-2013</td><td>Indu Manral</td></tr>
+                    <tr><td>10</td><td>2013-2014</td><td>Pankaj Gupta</td></tr>
+                    <tr><td>11</td><td>2014-2015</td><td>Akshay Srivastav / Mohit Kumar Bhargava</td></tr>
+                    <tr><td>12</td><td>2015-2016</td><td>Nisha Gupta</td></tr>
+                    <tr><td>13</td><td>2016-2017</td><td>Nikita Chauhan</td></tr>
+                    <tr><td>14</td><td>2017-2018</td><td>Bajrangi Verma</td></tr>
+                    <tr><td>15</td><td>2018-2019</td><td>Ayush Bharti</td></tr>
+                    <tr><td>16</td><td>2019-2020</td><td>Priyanka Shukla</td></tr>
+                    <tr><td>17</td><td>2020-2021</td><td>Ravi Sharma</td></tr>
+                    <tr><td>18</td><td>2021-2022</td><td>Neha Barnwal</td></tr>
+                    <tr><td>19</td><td>2022-2023</td><td>Sidharth Singh</td></tr>
+                    <tr><td>20</td><td>2023-2024</td><td>-</td></tr>
+                </table>
             </div>
         </section>
     </div>
@@ -468,327 +424,288 @@
     <div class="page" id="page-gallery">
         <section class="gallery-section">
             <div class="section-header reveal"><h2>Our <span class="gradient">Gallery</span></h2><p>Glimpses of life at NPAIC</p></div>
-            <div class="gallery-tabs reveal">
+            <div class="gallery-tabs">
                 <button class="gallery-tab active" onclick="filterGallery('all')">All</button>
                 <button class="gallery-tab" onclick="filterGallery('video')">Videos</button>
                 <button class="gallery-tab" onclick="filterGallery('image')">Images</button>
             </div>
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery loaded from CONFIG automatically -->
-            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
         </section>
     </div>
 
     <!-- CONTACT PAGE -->
     <div class="page" id="page-contact">
         <section class="contact-section">
-            <div class="section-header reveal"><h2>Get In <span class="gradient">Touch</span></h2><p>We'd love to hear from you</p></div>
+            <div class="section-header reveal"><h2>Contact <span class="gradient">Us</span></h2></div>
             <div class="contact-page-grid">
                 <div>
                     <div class="contact-info-cards reveal">
-                        <a href="tel:8604012282" class="contact-card-new call">
-                            <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
-                            <h4>Call Us</h4>
-                            <p>Speak directly</p>
-                            <div class="highlight-text">8604012282</div>
-                        </a>
-                        <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp">
-                            <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
-                            <h4>WhatsApp</h4>
-                            <p>Quick response</p>
-                            <div class="highlight-text">+91 8604012282</div>
-                        </a>
-                        <a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank" class="contact-card-new location">
-                            <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                            <h4>Visit Us</h4>
-                            <p>Opposite Water Tank</p>
-                            <div class="highlight-text" style="font-size:0.7rem">Kalyanpur, Lucknow</div>
-                        </a>
-                        <div class="contact-card-new hours">
-                            <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
-                            <h4>Hours</h4>
-                            <p>Mon - Sat</p>
-                            <div class="highlight-text">8 AM - 4 PM</div>
-                        </div>
+                        <a href="tel:8604012282" class="contact-card-new call"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div><h4>Call Us</h4><div class="highlight-text">8604012282</div></a>
+                        <a href="https://wa.me/918604012282" target="_blank" class="contact-card-new whatsapp"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div><h4>WhatsApp</h4><div class="highlight-text">+91 8604012282</div></a>
+                        <a href="https://maps.google.com/?q=New+Public+Academy+Inter+College+Lucknow" target="_blank" class="contact-card-new location"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><h4>Visit Us</h4><div class="highlight-text" style="font-size:0.7rem">Kalyanpur East, Lucknow</div></a>
+                        <div class="contact-card-new hours"><div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg></div><h4>Hours</h4><div class="highlight-text">8 AM - 4 PM</div></div>
                     </div>
-                    <div class="map-container reveal" style="margin-top:12px;min-height:200px;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8!2d80.9744016!3d26.9036577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="map-container reveal" style="height:300px">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5!2d80.9744!3d26.9037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957f2131c9967%3A0x4df56ee93f199c4!2sNew%20Public%20Academy%20Inter%20College!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <div class="contact-form-container reveal">
-                    <h3>✉️ Send Us a Message</h3>
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-row">
-                            <div class="form-group"><label>Parent Name *</label><input type="text" name="parentName" required placeholder="Your name"></div>
-                            <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="Phone number"></div>
-                        </div>
-                        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="Email address"></div>
-                        <div class="form-row">
-                            <div class="form-group"><label>Student Name *</label><input type="text" name="studentName" required placeholder="Student name"></div>
-                            <div class="form-group"><label>Class *</label>
-                                <select name="classApplying" required>
-                                    <option value="">Select Class</option>
-                                    <option>Playgroup</option><option>Nursery</option><option>KG</option>
-                                    <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option>
-                                    <option>Class VI</option><option>Class VII</option><option>Class VIII</option>
-                                    <option>Class IX</option><option>Class X</option>
-                                    <option>Class XI - Science</option><option>Class XI - Commerce</option>
-                                    <option>Class XII - Science</option><option>Class XII - Commerce</option>
-                                </select>
+                    <h3>📝 Admission Inquiry</h3>
+                    <div class="contact-form" id="contactFormDiv">
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group"><label>Parent/Guardian Name *</label><input type="text" name="parentName" required></div>
+                                <div class="form-group"><label>Phone Number *</label><input type="tel" name="phone" required></div>
                             </div>
-                        </div>
-                        <div class="form-group"><label>Message</label><textarea name="message" placeholder="Your message..."></textarea></div>
-                        <button type="submit" class="submit-btn" id="submitBtn">📤 Submit Inquiry</button>
-                    </form>
-                    <div class="form-success" id="formSuccess"><div class="success-icon">✅</div><h3>Thank You!</h3><p>We'll contact you shortly.</p></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Email Address</label><input type="email" name="email"></div>
+                                <div class="form-group"><label>Student Name *</label><input type="text" name="studentName" required></div>
+                            </div>
+                            <div class="form-group"><label>Class Applying For *</label><select name="classApplying" required><option value="">Select Class</option><option>Playgroup</option><option>Nursery</option><option>KG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option><option>Class XI - Science</option><option>Class XI - Commerce</option><option>Class XII - Science</option><option>Class XII - Commerce</option></select></div>
+                            <div class="form-group"><label>Message</label><textarea name="message" placeholder="Your message..."></textarea></div>
+                            <button type="submit" class="submit-btn" id="submitBtn">📤 Submit Inquiry</button>
+                        </form>
+                    </div>
+                    <div class="form-success" id="formSuccess"><div class="success-icon">✅</div><h3>Thank You!</h3><p>We'll contact you soon.</p></div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>NPAIC</h3>
-                <p>New Public Academy Inter College - Shaping future leaders since 2001 in Kalyanpur, Lucknow.</p>
+                <p>New Public Academy Inter College<br>Shaping Future Leaders Since 2001<br>Kalyanpur East, Lucknow - 226022</p>
+                <div class="footer-social">
+                    <a href="#"><svg viewBox="0 0 24 24" fill="#1877f2" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24" fill="#e4405f" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24" fill="#ff0000" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
             </div>
-            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('founders')">Founders</a></li><li><a href="#" onclick="showPage('facilities')">Facilities</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
-            <div class="footer-links"><h4>Programs</h4><ul><li><a href="#">Pre-Primary</a></li><li><a href="#">Primary</a></li><li><a href="#">Secondary</a></li><li><a href="#">Senior Secondary</a></li></ul></div>
-            <div class="footer-links"><h4>Contact</h4><ul><li><a href="tel:8604012282">📞 8604012282</a></li><li><a href="https://wa.me/918604012282">💬 WhatsApp</a></li><li><a href="https://www.google.co.uk/maps/place/New+Public+Academy+Inter+College/@26.9036577,80.9744016,17z" target="_blank">📍 Kalyanpur, Lucknow</a></li></ul></div>
+            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('founders')">About Us</a></li><li><a href="#" onclick="showPage('facilities')">Facilities</a></li><li><a href="#" onclick="showPage('gallery')">Gallery</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+            <div class="footer-links"><h4>Programs</h4><ul><li><a href="#">Pre-Primary</a></li><li><a href="#">Primary (I-V)</a></li><li><a href="#">Middle (VI-VIII)</a></li><li><a href="#">Secondary (IX-X)</a></li><li><a href="#">Sr. Secondary (XI-XII)</a></li></ul></div>
+            <div class="footer-links"><h4>Contact</h4><ul><li><a href="tel:8604012282">📞 8604012282</a></li><li><a href="tel:8960064683">📞 8960064683</a></li><li><a href="https://wa.me/918604012282">💬 WhatsApp</a></li><li><a href="#">📍 Kalyanpur, Lucknow</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 New Public Academy Inter College. All Rights Reserved. | सत्यमेव जयते</p></div>
+        <div class="footer-bottom">© 2025 New Public Academy Inter College. All Rights Reserved. | सत्यमेव जयते</div>
     </footer>
 
-    <!-- WHATSAPP FLOATING BUTTON -->
-    <a href="https://wa.me/918604012282" target="_blank" class="whatsapp-float">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-    </a>
+    <a href="https://wa.me/918604012282" target="_blank" class="whatsapp-float"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
 
-    <!-- MODALS -->
-    <div class="modal-overlay" id="videoModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><iframe id="videoFrame" src="" allowfullscreen></iframe></div></div>
-    <div class="modal-overlay" id="imageModal"><div class="modal-content"><button class="modal-close" onclick="closeImageModal()">✕</button><img id="modalImage" src="" alt="Gallery"></div></div>
+    <div class="modal-overlay" id="videoModal" onclick="closeModal()"><div class="modal-content" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal()">✕</button><iframe id="videoFrame" allowfullscreen></iframe></div></div>
+    <div class="modal-overlay" id="imageModal" onclick="closeImageModal()"><div class="modal-content" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeImageModal()">✕</button><img id="modalImage" src="" alt="Gallery"></div></div>
 
 <script>
-// ============================================
-// 🎓 NPAIC WEBSITE - GOOGLE SHEETS INTEGRATION
-// ============================================
-// Staff just updates Google Sheets - website updates automatically!
-//
-// SHEET 1: Images
-// Columns: A=DriveID, B=Caption, C=Type (carousel/gallery), D=Category
-//
-// SHEET 2: Videos  
-// Columns: A=YouTubeID, B=Title
-//
-// ============================================
-
-const SHEETS_CONFIG = {
-    // Replace these with your Google Sheet IDs
+var SHEETS_CONFIG = {
     imagesSheetId: '1j8fUsfK-seOIBqR-qTJfPdegnPQL0epM3wv8lQcm28c',
     videosSheetId: '1oMaBzLxrcG1dt0WpFZJAcFbrIo8LqqM32jd5HEn6F1g',
-    
-    // Sheet names (tabs)
     imagesSheetName: 'Sheet1',
-    videosSheetName: 'Sheet1',
+    videosSheetName: 'Sheet1'
 };
 
-// Fetch data from published Google Sheet (CSV format)
 function fetchSheetData(sheetId, sheetName) {
     var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:csv&sheet=' + sheetName;
-    return fetch(url).then(function(response){
-        return response.text();
-    }).then(function(text){
-        return parseCSV(text);
-    }).catch(function(error){
-        console.log('Sheet not configured yet:', error);
-        return [];
-    });
+    return fetch(url).then(function(r){ return r.text(); }).then(function(t){ return parseCSV(t); }).catch(function(e){ console.log(e); return []; });
 }
 
-// Parse CSV to array of objects
 function parseCSV(csv) {
     var lines = csv.trim().split('\n');
     if (lines.length < 2) return [];
-    var headers = lines[0].split(',').map(function(h){ return h.replace(/"/g, '').trim().toLowerCase(); });
+    var headers = lines[0].split(',').map(function(h){ return h.replace(/"/g,'').trim().toLowerCase(); });
     var result = [];
     for(var i=1; i<lines.length; i++){
-        var line = lines[i];
-        var values = line.split(',');
+        var values = lines[i].split(',');
         var obj = {};
         for(var j=0; j<headers.length; j++){
-            obj[headers[j]] = values[j] ? values[j].replace(/"/g, '').trim() : '';
+            obj[headers[j]] = values[j] ? values[j].replace(/"/g,'').trim() : '';
         }
         if(obj[headers[0]]) result.push(obj);
     }
     return result;
 }
 
-// Google Drive image URL
-function getDriveImageUrl(fileId) {
-    return 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w1000';
-}
+function getDriveImageUrl(id) { return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000'; }
+function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
 
-// YouTube thumbnail URL
-function getYouTubeThumbnail(videoId) {
-    return 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
-}
-
-// Load all content from sheets
 function loadFromSheets() {
-    // Load images
     fetchSheetData(SHEETS_CONFIG.imagesSheetId, SHEETS_CONFIG.imagesSheetName).then(function(images){
-        var carouselImages = images.filter(function(img){ return img.type === 'carousel'; });
-        var galleryImages = images.filter(function(img){ return img.type === 'gallery'; });
-        
-        // Populate carousel
-        loadCarousel(carouselImages);
+        var carousel = images.filter(function(img){ return img.type === 'carousel'; });
+        var gallery = images.filter(function(img){ return img.type === 'gallery'; });
+        loadCarousel(carousel);
         initCarousel();
-        
-        // Load videos then populate gallery
         fetchSheetData(SHEETS_CONFIG.videosSheetId, SHEETS_CONFIG.videosSheetName).then(function(videos){
-            loadGallery(galleryImages, videos);
+            loadGallery(gallery, videos);
             reveal();
         });
     });
 }
-window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},600)});
-function showPage(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.toggle('active',a.dataset.page===id)});scrollTo(0,0);setTimeout(reveal,100)}
-function toggleMobileMenu(){document.getElementById('mobileNav').classList.toggle('active')}
-function filterGallery(type){document.querySelectorAll('.gallery-tab').forEach(function(t){t.classList.remove('active')});event.target.classList.add('active');document.querySelectorAll('.gallery-item').forEach(function(i){i.style.display=(type==='all'||i.dataset.type===type)?'block':'none'})}
-function openVideoModal(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1';document.getElementById('videoModal').classList.add('active')}
-function closeModal(){document.getElementById('videoFrame').src='';document.getElementById('videoModal').classList.remove('active')}
-function openImageModal(id){document.getElementById('modalImage').src=getDriveImageUrl(id);document.getElementById('imageModal').classList.add('active')}
-function closeImageModal(){document.getElementById('imageModal').classList.remove('active')}
 
-// Form submission to Google Sheets
-document.getElementById('contactForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var btn=document.getElementById('submitBtn');
-    btn.innerHTML='⏳ Submitting...';
-    btn.disabled=true;
-    
-    var formData=new FormData(this);
-    var data={
-        parentName:formData.get('parentName'),
-        phone:formData.get('phone'),
-        email:formData.get('email')||'',
-        studentName:formData.get('studentName'),
-        classApplying:formData.get('classApplying'),
-        message:formData.get('message')||'',
-        timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
-    };
-    
-    var scriptURL='https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec';
-    
-    fetch(scriptURL,{
-        method:'POST',
-        mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(data)
-    }).then(function(){
-        document.querySelector('.contact-form').classList.add('hidden');
-        document.getElementById('formSuccess').classList.add('active');
-    }).catch(function(err){
-        console.error('Error:',err);
-        document.querySelector('.contact-form').classList.add('hidden');
-        document.getElementById('formSuccess').classList.add('active');
-    });
-});
-
-function reveal(){document.querySelectorAll('.reveal').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight-50)el.classList.add('active')})}
-function animateCounters(){document.querySelectorAll('.stat-number').forEach(function(c){var t=parseInt(c.dataset.target),s=c.dataset.suffix||'+';var n=0;var i=setInterval(function(){n+=t/35;if(n>=t){c.textContent=t.toLocaleString()+s;clearInterval(i)}else c.textContent=Math.floor(n).toLocaleString()},20)})}
-addEventListener('scroll',reveal);
-addEventListener('load',function(){reveal();setTimeout(animateCounters,1000);loadFromSheets()});
-
-// Load carousel from sheet data
-function loadCarousel(images){
-    var track=document.getElementById('carouselTrack');
-    if(!images || images.length===0){
-        track.innerHTML='<div class="carousel-slide"><img src="hero-image.jpg" alt="NPAIC"></div>';
+function loadCarousel(images) {
+    var track = document.getElementById('carouselTrack');
+    if(!images || images.length === 0) {
+        track.innerHTML = '<div class="carousel-slide"><img src="hero-image.jpg" alt="NPAIC"></div>';
         return;
     }
-    for(var i=0;i<images.length;i++){
-        var img=images[i];
-        var slide=document.createElement('div');
-        slide.className='carousel-slide';
-        slide.innerHTML='<img src="'+getDriveImageUrl(img.driveid || img.id)+'" alt="'+(img.caption||'NPAIC')+'" onerror="this.src=\'hero-image.jpg\'">';
+    for(var i=0; i<images.length; i++) {
+        var img = images[i];
+        var slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = '<img src="' + getDriveImageUrl(img.driveid) + '" alt="' + (img.caption||'NPAIC') + '" onerror="this.src=\'hero-image.jpg\'">';
         track.appendChild(slide);
     }
 }
 
-// Load gallery from sheet data
-function loadGallery(images, videos){
-    var grid=document.getElementById('galleryGrid');
-    
-    // Add videos first
-    if(videos && videos.length>0){
-        for(var v=0;v<videos.length;v++){
-            var vid=videos[v];
-            var item=document.createElement('div');
-            item.className='gallery-item video reveal';
-            item.dataset.type='video';
-            item.setAttribute('data-videoid',vid.youtubeid || vid.id);
-            item.onclick=function(){openVideoModal(this.getAttribute('data-videoid'))};
-            item.innerHTML='<img src="'+getYouTubeThumbnail(vid.youtubeid || vid.id)+'" alt="'+(vid.title||'Video')+'"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff">▶</div><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.7);color:#fff;padding:8px;font-size:0.8rem">'+(vid.title||'Video')+'</div>';
+function loadGallery(images, videos) {
+    var grid = document.getElementById('galleryGrid');
+    grid.innerHTML = '';
+    if(videos && videos.length > 0) {
+        for(var v=0; v<videos.length; v++) {
+            var vid = videos[v];
+            var vidId = vid.youtubeid || vid.id || '';
+            if(!vidId) continue;
+            var item = document.createElement('div');
+            item.className = 'gallery-item video';
+            item.setAttribute('data-type','video');
+            item.setAttribute('data-vid', vidId);
+            item.onclick = function(){ openVideoModal(this.getAttribute('data-vid')); };
+            item.innerHTML = '<img src="' + getYouTubeThumbnail(vidId) + '" alt="Video"><div class="play-btn">▶</div><div class="caption">' + (vid.title||'Video') + '</div>';
             grid.appendChild(item);
         }
     }
-    
-    // Add images
-    if(images && images.length>0){
-        for(var m=0;m<images.length;m++){
-            var img=images[m];
-            var imgItem=document.createElement('div');
-            imgItem.className='gallery-item reveal';
-            imgItem.dataset.type='image';
-            imgItem.setAttribute('data-imgid',img.driveid || img.id);
-            imgItem.onclick=function(){openImageModal(this.getAttribute('data-imgid'))};
-            imgItem.innerHTML='<img src="'+getDriveImageUrl(img.driveid || img.id)+'" alt="'+(img.caption||'Gallery')+'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.7);color:#fff;padding:8px;font-size:0.8rem">'+(img.caption||'')+'</div>';
+    if(images && images.length > 0) {
+        for(var m=0; m<images.length; m++) {
+            var img = images[m];
+            var imgId = img.driveid || img.id || '';
+            if(!imgId) continue;
+            var imgItem = document.createElement('div');
+            imgItem.className = 'gallery-item';
+            imgItem.setAttribute('data-type','image');
+            imgItem.setAttribute('data-imgid', imgId);
+            imgItem.onclick = function(){ openImageModal(this.getAttribute('data-imgid')); };
+            imgItem.innerHTML = '<img src="' + getDriveImageUrl(imgId) + '" alt="Gallery"><div class="caption">' + (img.caption||'') + '</div>';
             grid.appendChild(imgItem);
         }
     }
-    
-    // Fallback if no data
-    if((!videos || videos.length===0) && (!images || images.length===0)){
-        grid.innerHTML='<div class="gallery-placeholder" style="padding:40px;text-align:center;grid-column:1/-1"><p>Gallery coming soon! Add images and videos to Google Sheets.</p></div>';
+    if(grid.children.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;padding:40px;grid-column:1/-1;color:#a0a0a0">Gallery coming soon!</p>';
     }
-    
-    reveal();
 }
 
-// Carousel functionality
-var currentSlide=0;
-function initCarousel(){
-    var track=document.getElementById('carouselTrack');
-    var slides=track.querySelectorAll('.carousel-slide');
-    var dotsContainer=document.getElementById('carouselDots');
-    dotsContainer.innerHTML='';
-    for(var i=0;i<slides.length;i++){
-        var dot=document.createElement('button');
-        dot.className='carousel-dot'+(i===0?' active':'');
-        dot.setAttribute('data-slide',i);
-        dot.onclick=function(){goToSlide(parseInt(this.getAttribute('data-slide')))};
-        dotsContainer.appendChild(dot);
+var currentSlide = 0;
+function initCarousel() {
+    var track = document.getElementById('carouselTrack');
+    var slides = track.querySelectorAll('.carousel-slide');
+    var dots = document.getElementById('carouselDots');
+    dots.innerHTML = '';
+    for(var i=0; i<slides.length; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i===0?' active':'');
+        dot.setAttribute('data-slide', i);
+        dot.onclick = function(){ goToSlide(parseInt(this.getAttribute('data-slide'))); };
+        dots.appendChild(dot);
     }
-    if(slides.length>1)setInterval(function(){moveCarousel(1)},5000);
+    if(slides.length > 1) setInterval(function(){ moveCarousel(1); }, 4000);
 }
-function moveCarousel(dir){
-    var track=document.getElementById('carouselTrack');
-    var slides=track.querySelectorAll('.carousel-slide');
-    if(slides.length===0)return;
-    currentSlide=(currentSlide+dir+slides.length)%slides.length;
+function moveCarousel(dir) {
+    var slides = document.getElementById('carouselTrack').querySelectorAll('.carousel-slide');
+    if(slides.length === 0) return;
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
     updateCarousel();
 }
-function goToSlide(n){currentSlide=n;updateCarousel()}
-function updateCarousel(){
-    var track=document.getElementById('carouselTrack');
-    track.style.transform='translateX(-'+currentSlide*100+'%)';
-    var dots=document.querySelectorAll('.carousel-dot');
-    for(var i=0;i<dots.length;i++){
-        dots[i].classList.toggle('active',i===currentSlide);
+function goToSlide(n) { currentSlide = n; updateCarousel(); }
+function updateCarousel() {
+    document.getElementById('carouselTrack').style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    var dots = document.querySelectorAll('.carousel-dot');
+    for(var i=0; i<dots.length; i++) { dots[i].classList.toggle('active', i === currentSlide); }
+}
+
+window.addEventListener('load', function(){
+    setTimeout(function(){ document.getElementById('loader').classList.add('hidden'); }, 600);
+    reveal();
+    setTimeout(animateCounters, 1000);
+    loadFromSheets();
+});
+
+function showPage(id) {
+    var pages = document.querySelectorAll('.page');
+    for(var i=0; i<pages.length; i++) pages[i].classList.remove('active');
+    document.getElementById('page-' + id).classList.add('active');
+    var links = document.querySelectorAll('.nav-links a');
+    for(var j=0; j<links.length; j++) links[j].classList.toggle('active', links[j].getAttribute('data-page') === id);
+    scrollTo(0, 0);
+    setTimeout(reveal, 100);
+}
+function toggleMobileMenu() { document.getElementById('mobileNav').classList.toggle('active'); }
+function filterGallery(type) {
+    var tabs = document.querySelectorAll('.gallery-tab');
+    for(var t=0; t<tabs.length; t++) tabs[t].classList.remove('active');
+    event.target.classList.add('active');
+    var items = document.querySelectorAll('.gallery-item');
+    for(var i=0; i<items.length; i++) {
+        items[i].style.display = (type === 'all' || items[i].getAttribute('data-type') === type) ? 'block' : 'none';
     }
 }
+function openVideoModal(id) { document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + id + '?autoplay=1'; document.getElementById('videoModal').classList.add('active'); }
+function closeModal() { document.getElementById('videoFrame').src = ''; document.getElementById('videoModal').classList.remove('active'); }
+function openImageModal(id) { document.getElementById('modalImage').src = getDriveImageUrl(id); document.getElementById('imageModal').classList.add('active'); }
+function closeImageModal() { document.getElementById('imageModal').classList.remove('active'); }
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.innerHTML = '⏳ Submitting...';
+    btn.disabled = true;
+    var fd = new FormData(this);
+    var data = {
+        timestamp: new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'}),
+        parentName: fd.get('parentName'),
+        phone: fd.get('phone'),
+        email: fd.get('email') || '',
+        studentName: fd.get('studentName'),
+        classApplying: fd.get('classApplying'),
+        message: fd.get('message') || ''
+    };
+    fetch('https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    }).then(function() {
+        document.getElementById('contactFormDiv').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('active');
+    }).catch(function() {
+        document.getElementById('contactFormDiv').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('active');
+    });
+});
+
+function reveal() {
+    var els = document.querySelectorAll('.reveal');
+    for(var i=0; i<els.length; i++) {
+        if(els[i].getBoundingClientRect().top < innerHeight - 50) els[i].classList.add('active');
+    }
+}
+function animateCounters() {
+    var counters = document.querySelectorAll('.stat-number');
+    for(var i=0; i<counters.length; i++) {
+        (function(c) {
+            var target = parseInt(c.getAttribute('data-target'));
+            var suffix = c.getAttribute('data-suffix') || '';
+            var current = 0;
+            var increment = target / 40;
+            var timer = setInterval(function() {
+                current += increment;
+                if(current >= target) {
+                    c.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    c.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 30);
+        })(counters[i]);
+    }
+}
+addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
