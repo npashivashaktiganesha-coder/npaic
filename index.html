@@ -528,7 +528,7 @@ function getDriveImageUrl(id) { return 'https://drive.google.com/thumbnail?id=' 
 function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
 
 function loadFromSheets() {
-    var scriptUrl = 'https://script.google.com/macros/s/AKfycbxLYgCS2wwcO03gNgpQa1dSdc5xoX66aL5telfqgCF0pCfxefICS1AiCxsq2rNZLPnj9g/execL';
+    var scriptUrl = 'var scriptUrl = 'https://script.google.com/macros/s/AKfycbwcBXYJmFjMaIPZBUN7__RuuBIGduyj1jN3jlF0ovVfx5XKmXk2H-gG57fh67kX1GnO0w/exec';
     
     fetch(scriptUrl + '?id=' + SHEETS_CONFIG.imagesSheetId + '&sheet=' + SHEETS_CONFIG.imagesSheetName)
     .then(function(r){ return r.json(); })
@@ -721,6 +721,7 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
 
 
 
