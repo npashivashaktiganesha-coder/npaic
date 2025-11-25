@@ -528,18 +528,29 @@ function getDriveImageUrl(id) { return 'https://drive.google.com/thumbnail?id=' 
 function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
 
 function loadFromSheets() {
-    fetchSheetData(SHEETS_CONFIG.imagesSheetId, SHEETS_CONFIG.imagesSheetName).then(function(images){
-        var carousel = images.filter(function(img){ return img.type === 'carousel'; });
-        var gallery = images.filter(function(img){ return img.type === 'gallery'; });
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbxLYgCS2wwcO03gNgpQa1dSdc5xoX66aL5telfqgCF0pCfxefICS1AiCxsq2rNZLPnj9g/execL';
+    
+    fetch(scriptUrl + '?id=' + SHEETS_CONFIG.imagesSheetId + '&sheet=' + SHEETS_CONFIG.imagesSheetName)
+    .then(function(r){ return r.json(); })
+    .then(function(images){
+        console.log('Images loaded:', images.length);
+        var carousel = [];
+        var gallery = [];
+        for(var i=0; i<images.length; i++){
+            if(images[i].type === 'carousel') carousel.push(images[i]);
+            if(images[i].type === 'gallery') gallery.push(images[i]);
+        }
+        console.log('Carousel:', carousel.length, 'Gallery:', gallery.length);
         loadCarousel(carousel);
         initCarousel();
-        fetchSheetData(SHEETS_CONFIG.videosSheetId, SHEETS_CONFIG.videosSheetName).then(function(videos){
+        
+        fetch(scriptUrl + '?id=' + SHEETS_CONFIG.videosSheetId + '&sheet=' + SHEETS_CONFIG.videosSheetName)
+        .then(function(r){ return r.json(); })
+        .then(function(videos){
             loadGallery(gallery, videos);
-            reveal();
         });
     });
 }
-fetchSheetData(SHEETS_CONFIG.imagesSheetId, SHEETS_CONFIG.imagesSheetName).then(function(data){ console.log(data); });
     
 function loadCarousel(images) {
     var track = document.getElementById('carouselTrack');
@@ -710,6 +721,7 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
 
 
 
