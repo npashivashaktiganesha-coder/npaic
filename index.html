@@ -603,8 +603,7 @@ var SHEETS_CONFIG = {
 };
 
 function fetchSheetData(sheetId, sheetName) {
-    var url = 'https://script.google.com/macros/s/AKfycbwcBXYJmFjMaIPZBUN7__RuuBIGduyj1jN3jlF0ovVfx5XKmXk2H-gG57fh67kX1GnO0w/exec?id=' + sheetId + '&sheet=' + sheetName;
-    var url = 'https://script.google.com/macros/s/AKfycbz4JmnF71c3zcKqTAloWh1sW3k-rZVP37D-YDKL0JdMGvkjuU3VA2HgBUVMkEK49aVQaw/exec?id=' + sheetId + '&sheet=' + sheetName;
+    var url = 'https://script.google.com/macros/s/AKfycbxDNsRQmNI8Fhuw9CuA5YgF8bQMsBfEJRXtnB1VcWE9NoebCy8PpHxR8lne0__ykaHN6Q/exec?id=' + sheetId + '&sheet=' + sheetName;
     return fetch(url).then(function(r){ return r.json(); }).catch(function(e){ console.log(e); return []; });
 }
 
@@ -808,3 +807,4 @@ addEventListener('scroll', reveal);
 </script>
 </body>
 </html>
+
